@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "commonjs",
+    "target": "es2023",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -9,4 +10,6 @@
     "rootDir": "./src",
     "outDir": "./dist"
   },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "prisma.config.ts"]
 }
