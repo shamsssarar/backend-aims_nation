@@ -1,0 +1,11 @@
+// --- COURSE MODELS ---
+
+model Course {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  courseFee String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}
