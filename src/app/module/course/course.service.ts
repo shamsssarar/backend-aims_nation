@@ -4,7 +4,7 @@ import { prisma } from '../../lib/prisma';
 const createCourse = async (payload: {
   title: string;
   description?: string;
-  courseFee: string;
+  courseFee: number;
 }): Promise<Course> => {
   const result = await prisma.course.create({
     data: payload,
@@ -31,7 +31,7 @@ const getCourseById = async (id: string): Promise<Course | null> => {
 
 const updateCourse = async (
   id: string,
-  payload: Partial<{ title: string; description?: string; courseFee: string }>
+  payload: Partial<{ title: string; description?: string; courseFee: number }>
 ): Promise<Course> => {
   const result = await prisma.course.update({
     where: { id },

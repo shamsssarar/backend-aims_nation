@@ -20,15 +20,25 @@ export type CourseModel = runtime.Types.Result.DefaultSelection<Prisma.$CoursePa
 
 export type AggregateCourse = {
   _count: CourseCountAggregateOutputType | null
+  _avg: CourseAvgAggregateOutputType | null
+  _sum: CourseSumAggregateOutputType | null
   _min: CourseMinAggregateOutputType | null
   _max: CourseMaxAggregateOutputType | null
+}
+
+export type CourseAvgAggregateOutputType = {
+  courseFee: number | null
+}
+
+export type CourseSumAggregateOutputType = {
+  courseFee: number | null
 }
 
 export type CourseMinAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
-  courseFee: string | null
+  courseFee: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -38,7 +48,7 @@ export type CourseMaxAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
-  courseFee: string | null
+  courseFee: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -55,6 +65,14 @@ export type CourseCountAggregateOutputType = {
   _all: number
 }
 
+
+export type CourseAvgAggregateInputType = {
+  courseFee?: true
+}
+
+export type CourseSumAggregateInputType = {
+  courseFee?: true
+}
 
 export type CourseMinAggregateInputType = {
   id?: true
@@ -125,6 +143,18 @@ export type CourseAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CourseAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CourseSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CourseMinAggregateInputType
@@ -155,6 +185,8 @@ export type CourseGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: CourseCountAggregateInputType | true
+  _avg?: CourseAvgAggregateInputType
+  _sum?: CourseSumAggregateInputType
   _min?: CourseMinAggregateInputType
   _max?: CourseMaxAggregateInputType
 }
@@ -163,11 +195,13 @@ export type CourseGroupByOutputType = {
   id: string
   title: string
   description: string | null
-  courseFee: string
+  courseFee: number
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   _count: CourseCountAggregateOutputType | null
+  _avg: CourseAvgAggregateOutputType | null
+  _sum: CourseSumAggregateOutputType | null
   _min: CourseMinAggregateOutputType | null
   _max: CourseMaxAggregateOutputType | null
 }
@@ -194,7 +228,7 @@ export type CourseWhereInput = {
   id?: Prisma.StringFilter<"Course"> | string
   title?: Prisma.StringFilter<"Course"> | string
   description?: Prisma.StringNullableFilter<"Course"> | string | null
-  courseFee?: Prisma.StringFilter<"Course"> | string
+  courseFee?: Prisma.IntFilter<"Course"> | number
   createdAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Course"> | Date | string | null
@@ -217,7 +251,7 @@ export type CourseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CourseWhereInput | Prisma.CourseWhereInput[]
   title?: Prisma.StringFilter<"Course"> | string
   description?: Prisma.StringNullableFilter<"Course"> | string | null
-  courseFee?: Prisma.StringFilter<"Course"> | string
+  courseFee?: Prisma.IntFilter<"Course"> | number
   createdAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Course"> | Date | string | null
@@ -232,8 +266,10 @@ export type CourseOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CourseCountOrderByAggregateInput
+  _avg?: Prisma.CourseAvgOrderByAggregateInput
   _max?: Prisma.CourseMaxOrderByAggregateInput
   _min?: Prisma.CourseMinOrderByAggregateInput
+  _sum?: Prisma.CourseSumOrderByAggregateInput
 }
 
 export type CourseScalarWhereWithAggregatesInput = {
@@ -243,7 +279,7 @@ export type CourseScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Course"> | string
   title?: Prisma.StringWithAggregatesFilter<"Course"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Course"> | string | null
-  courseFee?: Prisma.StringWithAggregatesFilter<"Course"> | string
+  courseFee?: Prisma.IntWithAggregatesFilter<"Course"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Course"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Course"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Course"> | Date | string | null
@@ -253,7 +289,7 @@ export type CourseCreateInput = {
   id?: string
   title: string
   description?: string | null
-  courseFee: string
+  courseFee: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -263,7 +299,7 @@ export type CourseUncheckedCreateInput = {
   id?: string
   title: string
   description?: string | null
-  courseFee: string
+  courseFee: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -273,7 +309,7 @@ export type CourseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseFee?: Prisma.StringFieldUpdateOperationsInput | string
+  courseFee?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -283,7 +319,7 @@ export type CourseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseFee?: Prisma.StringFieldUpdateOperationsInput | string
+  courseFee?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -293,7 +329,7 @@ export type CourseCreateManyInput = {
   id?: string
   title: string
   description?: string | null
-  courseFee: string
+  courseFee: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -303,7 +339,7 @@ export type CourseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseFee?: Prisma.StringFieldUpdateOperationsInput | string
+  courseFee?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -313,7 +349,7 @@ export type CourseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  courseFee?: Prisma.StringFieldUpdateOperationsInput | string
+  courseFee?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -327,6 +363,10 @@ export type CourseCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type CourseAvgOrderByAggregateInput = {
+  courseFee?: Prisma.SortOrder
 }
 
 export type CourseMaxOrderByAggregateInput = {
@@ -347,6 +387,18 @@ export type CourseMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type CourseSumOrderByAggregateInput = {
+  courseFee?: Prisma.SortOrder
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 
@@ -400,7 +452,7 @@ export type $CoursePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: string
     title: string
     description: string | null
-    courseFee: string
+    courseFee: number
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -830,7 +882,7 @@ export interface CourseFieldRefs {
   readonly id: Prisma.FieldRef<"Course", 'String'>
   readonly title: Prisma.FieldRef<"Course", 'String'>
   readonly description: Prisma.FieldRef<"Course", 'String'>
-  readonly courseFee: Prisma.FieldRef<"Course", 'String'>
+  readonly courseFee: Prisma.FieldRef<"Course", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Course", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Course", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Course", 'DateTime'>

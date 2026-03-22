@@ -3,11 +3,13 @@ import { CourseControllers } from './course.controller';
 
 import { CourseValidations } from './course.validation';
 import { validateRequest } from '../../middleware/validateRequest';
+import checkAuth from '../../middleware/checkAuth';
 
 const router = express.Router();
 
 router.post(
-  '/create-course',
+  '/',
+  checkAuth(['ADMIN']),
   validateRequest(CourseValidations.createCourseValidationSchema),
   CourseControllers.createCourse
 );
@@ -18,6 +20,7 @@ router.get('/:id', CourseControllers.getCourseById);
 
 router.patch(
   '/:id',
+  checkAuth(['ADMIN']),
   validateRequest(CourseValidations.updateCourseValidationSchema),
   CourseControllers.updateCourse
 );

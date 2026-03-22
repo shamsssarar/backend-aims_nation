@@ -3,19 +3,26 @@ import cors from 'cors';
 import { notFound } from './app/middleware/notFound';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import { IndexRoutes } from './app/routes';
+import { toNodeHandler } from 'better-auth/node';
+import { auth } from './app/lib/auth';
 
 const app: Application = express();
 
 // Parsers
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
 //routes
 app.use('/api/v1', IndexRoutes);
 
-// Global Error Handler (Must be after all routes)
-app.use(globalErrorHandler);
+//auth
+app.use('/api/auth', toNodeHandler(auth));
 
+// 404 handler (must be placed after all routes)
 app.use(notFound);
+
+// Global Error Handler (must be last)
+app.use(globalErrorHandler);
 
 export default app;
