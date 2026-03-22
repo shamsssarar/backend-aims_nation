@@ -64,3 +64,8 @@ export type Verification = Prisma.VerificationModel
  * 
  */
 export type Course = Prisma.CourseModel
+/**
+ * Model Enrollment
+ * 
+ */
+export type Enrollment = Prisma.EnrollmentModel

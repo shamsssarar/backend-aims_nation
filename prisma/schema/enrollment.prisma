@@ -1,0 +1,16 @@
+model Enrollment {
+  id             String           @id @default(uuid())
+  status         EnrollmentStatus @default(ACTIVE)
+  enrollmentDate DateTime         @default(now())
+
+  // The Student
+  studentId      String
+  student        User             @relation("StudentEnrollments", fields: [studentId], references: [id])
+
+  // The Course
+  courseId       String
+  course         Course           @relation(fields: [courseId], references: [id])
+
+  // A student cannot enroll in the exact same course twice at the same time
+  @@unique([studentId, courseId])
+}

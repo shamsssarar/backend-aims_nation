@@ -5,6 +5,7 @@ model Course {
   title       String
   description String?
   courseFee Int
+  enrollments Enrollment[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?

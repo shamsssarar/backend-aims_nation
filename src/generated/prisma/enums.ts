@@ -12,7 +12,16 @@
 export const Role = {
   ADMIN: 'ADMIN',
   TEACHER: 'TEACHER',
-  PARENT: 'PARENT'
+  STUDENT: 'STUDENT'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const EnrollmentStatus = {
+  ACTIVE: 'ACTIVE',
+  DROPPED: 'DROPPED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus]

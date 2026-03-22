@@ -11,12 +11,13 @@ export const auth = betterAuth({
       role: {
         type: 'string',
         required: false,
-        defaultValue: 'PARENT',
+        defaultValue: 'STUDENT',
       },
     },
   },
   emailAndPassword: {
     enabled: true,
   },
+
   // You can configure session limits, JWTs, etc., here later
 });

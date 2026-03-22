@@ -55,7 +55,8 @@ export const ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  Course: 'Course'
+  Course: 'Course',
+  Enrollment: 'Enrollment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -145,6 +146,17 @@ export const CourseScalarFieldEnum = {
 } as const
 
 export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
+
+
+export const EnrollmentScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  enrollmentDate: 'enrollmentDate',
+  studentId: 'studentId',
+  courseId: 'courseId'
+} as const
+
+export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
 
 
 export const SortOrder = {

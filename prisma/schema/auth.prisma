@@ -9,14 +9,14 @@ model User {
   email         String    @unique
   emailVerified Boolean   @default(false)
   image         String?
-  role          Role      @default(PARENT) // AiMS Nation custom role
+  role          Role      @default(STUDENT) // AiMS Nation custom role
 
   // better-auth Core Relations
   sessions      Session[]
   accounts      Account[]
-
+enrollments   Enrollment[] @relation("StudentEnrollments")
   // AiMS Nation Custom Relations
-//   students      Student[] @relation("ParentStudents") // If PARENT
+  // students      Student[] @relation("ParentStudents") // If PARENT
 //   batches       Batch[]   @relation("TeacherBatches") // If TEACHER
 
   // Audit Trails
