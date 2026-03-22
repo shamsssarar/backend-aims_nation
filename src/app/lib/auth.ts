@@ -6,6 +6,15 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
+  user: {
+    additionalFields: {
+      role: {
+        type: 'string',
+        required: false,
+        defaultValue: 'PARENT',
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
