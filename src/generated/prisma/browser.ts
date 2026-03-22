@@ -47,3 +47,8 @@ export type Course = Prisma.CourseModel
  * 
  */
 export type Enrollment = Prisma.EnrollmentModel
+/**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel

@@ -1,0 +1,16 @@
+model Invoice {
+  id            String        @id @default(uuid())
+  amount        Int           // Copied from the Course fee at the time of purchase
+  status        PaymentStatus @default(PENDING)
+  paymentDate   DateTime?     // When the admin officially marks it as paid
+  
+  // Relations
+  studentId     String
+  student       User          @relation(fields: [studentId], references: [id])
+  courseId      String
+  course        Course        @relation(fields: [courseId], references: [id])
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  deletedAt     DateTime?
+}

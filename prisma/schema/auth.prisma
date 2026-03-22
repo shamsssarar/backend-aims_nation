@@ -14,6 +14,7 @@ model User {
   // better-auth Core Relations
   sessions      Session[]
   accounts      Account[]
+  invoices Invoice[]
 enrollments   Enrollment[] @relation("StudentEnrollments")
   // AiMS Nation Custom Relations
   // students      Student[] @relation("ParentStudents") // If PARENT

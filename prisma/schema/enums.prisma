@@ -9,3 +9,10 @@ enum EnrollmentStatus {
   DROPPED
   COMPLETED
 }
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+}
