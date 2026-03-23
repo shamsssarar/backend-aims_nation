@@ -44,3 +44,13 @@ export const BehaviorStatus = {
 } as const
 
 export type BehaviorStatus = (typeof BehaviorStatus)[keyof typeof BehaviorStatus]
+
+
+export const ApplicationStatus = {
+  PENDING: 'PENDING',
+  REVIEWED: 'REVIEWED',
+  HIRED: 'HIRED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ApplicationStatus = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]

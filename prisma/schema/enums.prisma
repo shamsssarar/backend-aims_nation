@@ -22,3 +22,10 @@ enum BehaviorStatus {
   NORMAL
   NEEDS_ATTENTION
 }
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWED
+  HIRED
+  REJECTED
+}

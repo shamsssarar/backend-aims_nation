@@ -60,7 +60,8 @@ export const ModelName = {
   Enrollment: 'Enrollment',
   Invoice: 'Invoice',
   Student: 'Student',
-  Teacher: 'Teacher'
+  Teacher: 'Teacher',
+  TeacherApplication: 'TeacherApplication'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -215,6 +216,22 @@ export const TeacherScalarFieldEnum = {
 } as const
 
 export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeof TeacherScalarFieldEnum]
+
+
+export const TeacherApplicationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  specialty: 'specialty',
+  resumeLink: 'resumeLink',
+  status: 'status',
+  message: 'message',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TeacherApplicationScalarFieldEnum = (typeof TeacherApplicationScalarFieldEnum)[keyof typeof TeacherApplicationScalarFieldEnum]
 
 
 export const SortOrder = {

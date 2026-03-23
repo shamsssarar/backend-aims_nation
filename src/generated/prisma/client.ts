@@ -89,3 +89,8 @@ export type Student = Prisma.StudentModel
  * 
  */
 export type Teacher = Prisma.TeacherModel
+/**
+ * Model TeacherApplication
+ * 
+ */
+export type TeacherApplication = Prisma.TeacherApplicationModel

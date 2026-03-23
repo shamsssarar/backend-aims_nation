@@ -1,0 +1,15 @@
+model TeacherApplication {
+  id          String            @id @default(uuid())
+  name        String
+  email       String            @unique // Prevents the same person from spamming applications
+  phone       String
+  specialty   String            // e.g., "Robotics", "Art", "Cooking"
+  resumeLink  String            // A URL to their Google Drive or portfolio
+  status      ApplicationStatus @default(PENDING)
+  
+  // Optional: A small cover letter or note from the applicant
+  message     String?           @db.Text
+
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
