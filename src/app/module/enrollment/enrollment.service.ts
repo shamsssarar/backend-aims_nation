@@ -3,28 +3,70 @@ import AppError from '../../errorHelpers/AppError';
 import { prisma } from '../../lib/prisma';
 
 const createEnrollment = async (payload: { studentId: string; courseId: string }) => {
-  // 1. Check if already enrolled
-  const existing = await prisma.enrollment.findUnique({
+  const { studentId, courseId } = payload;
+
+  // 1. Prevent duplicate enrollments
+  const existingEnrollment = await prisma.enrollment.findUnique({
     where: {
-      studentId_courseId: {
-        studentId: payload.studentId,
-        courseId: payload.courseId,
-      },
+      studentId_courseId: { studentId, courseId },
     },
   });
 
-  if (existing) {
+  if (existingEnrollment) {
     throw new AppError(400, 'Student is already enrolled in this course.');
   }
 
-  // 2. Create the enrollment
-  const result = await prisma.enrollment.create({
-    data: payload,
-    include: {
-      student: { select: { name: true, email: true } },
-      course: { select: { title: true, courseFee: true } },
-    },
+  // 2. Fetch the course to capture the correct course fee for the invoice
+  const course = await prisma.course.findUnique({
+    where: { id: courseId },
   });
+
+  if (!course) {
+    throw new AppError(404, 'Course not found.');
+  }
+
+  // 3. Execute the Database Transaction
+  const result = await prisma.$transaction(async (tx) => {
+    // A. Check if the student already tried to buy it and has a PENDING invoice
+    const existingInvoice = await tx.invoice.findFirst({
+      where: { studentId, courseId, status: 'PENDING' },
+    });
+
+    if (existingInvoice) {
+      // If they had a pending invoice, mark it as PAID so it doesn't get stuck
+      await tx.invoice.update({
+        where: { id: existingInvoice.id },
+        data: { status: 'PAID', paymentDate: new Date() },
+      });
+    } else {
+      // B. If they didn't have an invoice, auto-generate a PAID one for the financial ledger
+      await tx.invoice.create({
+        data: {
+          studentId,
+          courseId,
+          amount: course.courseFee, // You could also accept an optional override amount in the payload for scholarships!
+          status: 'PAID',
+          paymentDate: new Date(),
+        },
+      });
+    }
+
+    // C. Create the official Enrollment record
+    const newEnrollment = await tx.enrollment.create({
+      data: {
+        studentId,
+        courseId,
+        status: 'ACTIVE', // Ensure it is explicitly marked active
+      },
+      include: {
+        student: { select: { name: true, email: true } },
+        course: { select: { title: true, courseFee: true } },
+      },
+    });
+
+    return newEnrollment;
+  });
+
   return result;
 };
 

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post(
   '/',
-  checkAuth(['ADMIN', 'TEACHER']),
+  checkAuth(['ADMIN']),
   validateRequest(EnrollmentValidations.createEnrollmentValidationSchema),
   EnrollmentControllers.createEnrollment
 );
