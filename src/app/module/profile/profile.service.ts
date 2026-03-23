@@ -27,7 +27,7 @@ const createStudentProfile = async (userId: string, payload: any) => {
     },
     // Include the base user data so the frontend gets the full picture back
     include: {
-      user: { select: { name: true, email: true } },
+      user: { select: { id: true, name: true, email: true } },
     },
   });
 
@@ -37,9 +37,37 @@ const createStudentProfile = async (userId: string, payload: any) => {
 // A helper service to fetch the full profile when they log in
 const getMyProfile = async (userId: string, role: string) => {
   if (role === 'STUDENT') {
-    return await prisma.student.findUnique({ where: { userId }, include: { user: true } });
+    return await prisma.student.findUnique({
+      where: { userId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            emailVerified: true,
+            image: true,
+            role: true,
+          },
+        },
+      },
+    });
   } else if (role === 'TEACHER') {
-    return await prisma.teacher.findUnique({ where: { userId }, include: { user: true } });
+    return await prisma.teacher.findUnique({
+      where: { userId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            emailVerified: true,
+            image: true,
+            role: true,
+          },
+        },
+      },
+    });
   } else if (role === 'ADMIN') {
     return await prisma.admin.findUnique({ where: { userId }, include: { user: true } });
   }
