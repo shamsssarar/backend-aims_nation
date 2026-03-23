@@ -61,7 +61,8 @@ export const ModelName = {
   Invoice: 'Invoice',
   Student: 'Student',
   Teacher: 'Teacher',
-  TeacherApplication: 'TeacherApplication'
+  TeacherApplication: 'TeacherApplication',
+  WeeklyReport: 'WeeklyReport'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -232,6 +233,24 @@ export const TeacherApplicationScalarFieldEnum = {
 } as const
 
 export type TeacherApplicationScalarFieldEnum = (typeof TeacherApplicationScalarFieldEnum)[keyof typeof TeacherApplicationScalarFieldEnum]
+
+
+export const WeeklyReportScalarFieldEnum = {
+  id: 'id',
+  weekStartDate: 'weekStartDate',
+  daysPresent: 'daysPresent',
+  daysAbsent: 'daysAbsent',
+  examScore: 'examScore',
+  behaviorStatus: 'behaviorStatus',
+  teacherComments: 'teacherComments',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  courseId: 'courseId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WeeklyReportScalarFieldEnum = (typeof WeeklyReportScalarFieldEnum)[keyof typeof WeeklyReportScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -6,7 +6,7 @@ model TeacherApplication {
   specialty   String            // e.g., "Robotics", "Art", "Cooking"
   resumeLink  String            // A URL to their Google Drive or portfolio
   status      ApplicationStatus @default(PENDING)
-  
+
   // Optional: A small cover letter or note from the applicant
   message     String?           @db.Text
 

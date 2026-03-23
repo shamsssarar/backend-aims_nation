@@ -12,7 +12,7 @@ model Student {
   // Move all academic relations here!
   enrollments         Enrollment[]
   invoices            Invoice[]
-//   weeklyReports       WeeklyReport[]
+  weeklyReports       WeeklyReport[]
 
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt

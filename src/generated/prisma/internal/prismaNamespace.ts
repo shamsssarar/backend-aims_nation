@@ -394,7 +394,8 @@ export const ModelName = {
   Invoice: 'Invoice',
   Student: 'Student',
   Teacher: 'Teacher',
-  TeacherApplication: 'TeacherApplication'
+  TeacherApplication: 'TeacherApplication',
+  WeeklyReport: 'WeeklyReport'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "user" | "session" | "account" | "verification" | "course" | "enrollment" | "invoice" | "student" | "teacher" | "teacherApplication"
+    modelProps: "admin" | "user" | "session" | "account" | "verification" | "course" | "enrollment" | "invoice" | "student" | "teacher" | "teacherApplication" | "weeklyReport"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    WeeklyReport: {
+      payload: Prisma.$WeeklyReportPayload<ExtArgs>
+      fields: Prisma.WeeklyReportFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WeeklyReportFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WeeklyReportFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>
+        }
+        findFirst: {
+          args: Prisma.WeeklyReportFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WeeklyReportFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>
+        }
+        findMany: {
+          args: Prisma.WeeklyReportFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>[]
+        }
+        create: {
+          args: Prisma.WeeklyReportCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>
+        }
+        createMany: {
+          args: Prisma.WeeklyReportCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WeeklyReportCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>[]
+        }
+        delete: {
+          args: Prisma.WeeklyReportDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>
+        }
+        update: {
+          args: Prisma.WeeklyReportUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>
+        }
+        deleteMany: {
+          args: Prisma.WeeklyReportDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WeeklyReportUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WeeklyReportUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>[]
+        }
+        upsert: {
+          args: Prisma.WeeklyReportUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportPayload>
+        }
+        aggregate: {
+          args: Prisma.WeeklyReportAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWeeklyReport>
+        }
+        groupBy: {
+          args: Prisma.WeeklyReportGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeeklyReportGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WeeklyReportCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeeklyReportCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1421,6 +1496,24 @@ export const TeacherApplicationScalarFieldEnum = {
 export type TeacherApplicationScalarFieldEnum = (typeof TeacherApplicationScalarFieldEnum)[keyof typeof TeacherApplicationScalarFieldEnum]
 
 
+export const WeeklyReportScalarFieldEnum = {
+  id: 'id',
+  weekStartDate: 'weekStartDate',
+  daysPresent: 'daysPresent',
+  daysAbsent: 'daysAbsent',
+  examScore: 'examScore',
+  behaviorStatus: 'behaviorStatus',
+  teacherComments: 'teacherComments',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  courseId: 'courseId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WeeklyReportScalarFieldEnum = (typeof WeeklyReportScalarFieldEnum)[keyof typeof WeeklyReportScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1557,6 +1650,20 @@ export type ListEnumApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInput
 
 
 /**
+ * Reference to a field of type 'BehaviorStatus'
+ */
+export type EnumBehaviorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BehaviorStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BehaviorStatus[]'
+ */
+export type ListEnumBehaviorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BehaviorStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1675,6 +1782,7 @@ export type GlobalOmitConfig = {
   student?: Prisma.StudentOmit
   teacher?: Prisma.TeacherOmit
   teacherApplication?: Prisma.TeacherApplicationOmit
+  weeklyReport?: Prisma.WeeklyReportOmit
 }
 
 /* Types for Logging */

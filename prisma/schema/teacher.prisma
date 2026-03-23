@@ -9,6 +9,7 @@ model Teacher {
   userId         String   @unique
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  weeklyAReports WeeklyReport[]
   // Teachers will eventually link to Courses/Classes here
   
   createdAt      DateTime @default(now())

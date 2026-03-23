@@ -72,3 +72,8 @@ export type Teacher = Prisma.TeacherModel
  * 
  */
 export type TeacherApplication = Prisma.TeacherApplicationModel
+/**
+ * Model WeeklyReport
+ * 
+ */
+export type WeeklyReport = Prisma.WeeklyReportModel

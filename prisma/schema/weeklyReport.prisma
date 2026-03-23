@@ -1,0 +1,22 @@
+model WeeklyReport {
+  id              String         @id @default(uuid())
+  weekStartDate   DateTime       
+  daysPresent     Int            @default(0)
+  daysAbsent      Int            @default(0)
+  examScore       Int?           
+  behaviorStatus  BehaviorStatus @default(NORMAL)
+  teacherComments String?        
+
+  // 👉 THE FIX: Pointing to the specific Profile tables
+  studentId       String
+  student         Student        @relation(fields: [studentId], references: [id])
+  
+  teacherId       String
+  teacher         Teacher        @relation(fields: [teacherId], references: [id])
+
+  courseId        String
+  course          Course         @relation(fields: [courseId], references: [id])
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
