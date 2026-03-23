@@ -1,0 +1,16 @@
+model Teacher {
+  id             String   @id @default(uuid())
+  bio            String?
+  salary         Int?
+  certifications String?
+  hireDate       DateTime @default(now())
+
+  // The 1-to-1 link to the Auth table
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Teachers will eventually link to Courses/Classes here
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

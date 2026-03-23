@@ -16,3 +16,9 @@ enum PaymentStatus {
   OVERDUE
   CANCELLED
 }
+
+enum BehaviorStatus {
+  EXCEPTIONAL
+  NORMAL
+  NEEDS_ATTENTION
+}

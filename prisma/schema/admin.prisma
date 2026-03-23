@@ -1,0 +1,10 @@
+model Admin {
+  id          String   @id @default(uuid())
+  designation String?  // e.g., "Principal", "Operations Manager"
+
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

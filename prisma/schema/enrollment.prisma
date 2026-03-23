@@ -5,7 +5,7 @@ model Enrollment {
 
   // The Student
   studentId      String
-  student        User             @relation("StudentEnrollments", fields: [studentId], references: [id])
+student        Student          @relation(fields: [studentId], references: [id])
 
   // The Course
   courseId       String

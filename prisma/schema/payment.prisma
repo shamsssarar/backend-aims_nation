@@ -6,7 +6,7 @@ model Invoice {
   
   // Relations
   studentId     String
-  student       User          @relation(fields: [studentId], references: [id])
+student        Student          @relation(fields: [studentId], references: [id])
   courseId      String
   course        Course        @relation(fields: [courseId], references: [id])
 
