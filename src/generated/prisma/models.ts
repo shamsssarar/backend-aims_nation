@@ -8,6 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Admin'
 export type * from './models/User'
 export type * from './models/Session'
 export type * from './models/Account'
@@ -15,4 +16,6 @@ export type * from './models/Verification'
 export type * from './models/Course'
 export type * from './models/Enrollment'
 export type * from './models/Invoice'
+export type * from './models/Student'
+export type * from './models/Teacher'
 export type * from './commonInputTypes'

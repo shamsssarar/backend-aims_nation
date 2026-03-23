@@ -59,7 +59,7 @@ const createEnrollment = async (payload: { studentId: string; courseId: string }
         status: 'ACTIVE', // Ensure it is explicitly marked active
       },
       include: {
-        student: { select: { name: true, email: true } },
+        student: { select: { user: true } },
         course: { select: { title: true, courseFee: true } },
       },
     });
@@ -109,9 +109,7 @@ const getCourseEnrollments = async (courseId: string) => {
     include: {
       student: {
         select: {
-          id: true,
-          name: true,
-          email: true,
+          user: true,
           // We specifically DO NOT select the password or role here for security
         },
       },

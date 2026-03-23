@@ -35,3 +35,12 @@ export const PaymentStatus = {
 } as const
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const BehaviorStatus = {
+  EXCEPTIONAL: 'EXCEPTIONAL',
+  NORMAL: 'NORMAL',
+  NEEDS_ATTENTION: 'NEEDS_ATTENTION'
+} as const
+
+export type BehaviorStatus = (typeof BehaviorStatus)[keyof typeof BehaviorStatus]

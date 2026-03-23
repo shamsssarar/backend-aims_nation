@@ -73,7 +73,7 @@ const getMyPayments = async (studentId: string) => {
 const getAllPayments = async () => {
   return await prisma.invoice.findMany({
     include: {
-      student: { select: { name: true, email: true } },
+      student: { select: { user: true } },
       course: { select: { title: true } },
     },
     orderBy: { createdAt: 'desc' },
