@@ -10,6 +10,7 @@ model Teacher {
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   weeklyAReports WeeklyReport[]
+  studyMaterials StudyMaterial[]
   // Teachers will eventually link to Courses/Classes here
   
   createdAt      DateTime @default(now())

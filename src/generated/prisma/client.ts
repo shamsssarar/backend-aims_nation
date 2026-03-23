@@ -85,6 +85,11 @@ export type Invoice = Prisma.InvoiceModel
  */
 export type Student = Prisma.StudentModel
 /**
+ * Model StudyMaterial
+ * 
+ */
+export type StudyMaterial = Prisma.StudyMaterialModel
+/**
  * Model Teacher
  * 
  */

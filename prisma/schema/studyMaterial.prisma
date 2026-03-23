@@ -1,0 +1,16 @@
+model StudyMaterial {
+  id          String   @id @default(uuid())
+  title       String
+  description String?  @db.Text
+  fileUrl     String   // Link to AWS S3, Google Drive, or wherever you host the PDF/File
+  
+  // Relations
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+  
+  teacherId   String
+  teacher     Teacher  @relation(fields: [teacherId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

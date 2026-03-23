@@ -235,6 +235,7 @@ export type CourseWhereInput = {
   enrollments?: Prisma.EnrollmentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   weeklyReport?: Prisma.WeeklyReportListRelationFilter
+  studyMaterials?: Prisma.StudyMaterialListRelationFilter
 }
 
 export type CourseOrderByWithRelationInput = {
@@ -248,6 +249,7 @@ export type CourseOrderByWithRelationInput = {
   enrollments?: Prisma.EnrollmentOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   weeklyReport?: Prisma.WeeklyReportOrderByRelationAggregateInput
+  studyMaterials?: Prisma.StudyMaterialOrderByRelationAggregateInput
 }
 
 export type CourseWhereUniqueInput = Prisma.AtLeast<{
@@ -264,6 +266,7 @@ export type CourseWhereUniqueInput = Prisma.AtLeast<{
   enrollments?: Prisma.EnrollmentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   weeklyReport?: Prisma.WeeklyReportListRelationFilter
+  studyMaterials?: Prisma.StudyMaterialListRelationFilter
 }, "id">
 
 export type CourseOrderByWithAggregationInput = {
@@ -305,6 +308,7 @@ export type CourseCreateInput = {
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCourseInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCourseInput
   weeklyReport?: Prisma.WeeklyReportCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUncheckedCreateInput = {
@@ -318,6 +322,7 @@ export type CourseUncheckedCreateInput = {
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCourseInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCourseInput
   weeklyReport?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUpdateInput = {
@@ -331,6 +336,7 @@ export type CourseUpdateInput = {
   enrollments?: Prisma.EnrollmentUpdateManyWithoutCourseNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCourseNestedInput
   weeklyReport?: Prisma.WeeklyReportUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseUncheckedUpdateInput = {
@@ -344,6 +350,7 @@ export type CourseUncheckedUpdateInput = {
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCourseNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCourseNestedInput
   weeklyReport?: Prisma.WeeklyReportUncheckedUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseCreateManyInput = {
@@ -455,6 +462,20 @@ export type CourseUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CourseUpdateToOneWithWhereWithoutInvoicesInput, Prisma.CourseUpdateWithoutInvoicesInput>, Prisma.CourseUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type CourseCreateNestedOneWithoutStudyMaterialsInput = {
+  create?: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
+  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutStudyMaterialsInput
+  connect?: Prisma.CourseWhereUniqueInput
+}
+
+export type CourseUpdateOneRequiredWithoutStudyMaterialsNestedInput = {
+  create?: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
+  connectOrCreate?: Prisma.CourseCreateOrConnectWithoutStudyMaterialsInput
+  upsert?: Prisma.CourseUpsertWithoutStudyMaterialsInput
+  connect?: Prisma.CourseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseUpdateToOneWithWhereWithoutStudyMaterialsInput, Prisma.CourseUpdateWithoutStudyMaterialsInput>, Prisma.CourseUncheckedUpdateWithoutStudyMaterialsInput>
+}
+
 export type CourseCreateNestedOneWithoutWeeklyReportInput = {
   create?: Prisma.XOR<Prisma.CourseCreateWithoutWeeklyReportInput, Prisma.CourseUncheckedCreateWithoutWeeklyReportInput>
   connectOrCreate?: Prisma.CourseCreateOrConnectWithoutWeeklyReportInput
@@ -479,6 +500,7 @@ export type CourseCreateWithoutEnrollmentsInput = {
   deletedAt?: Date | string | null
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCourseInput
   weeklyReport?: Prisma.WeeklyReportCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUncheckedCreateWithoutEnrollmentsInput = {
@@ -491,6 +513,7 @@ export type CourseUncheckedCreateWithoutEnrollmentsInput = {
   deletedAt?: Date | string | null
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCourseInput
   weeklyReport?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
 }
 
 export type CourseCreateOrConnectWithoutEnrollmentsInput = {
@@ -519,6 +542,7 @@ export type CourseUpdateWithoutEnrollmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoices?: Prisma.InvoiceUpdateManyWithoutCourseNestedInput
   weeklyReport?: Prisma.WeeklyReportUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseUncheckedUpdateWithoutEnrollmentsInput = {
@@ -531,6 +555,7 @@ export type CourseUncheckedUpdateWithoutEnrollmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCourseNestedInput
   weeklyReport?: Prisma.WeeklyReportUncheckedUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseCreateWithoutInvoicesInput = {
@@ -543,6 +568,7 @@ export type CourseCreateWithoutInvoicesInput = {
   deletedAt?: Date | string | null
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCourseInput
   weeklyReport?: Prisma.WeeklyReportCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUncheckedCreateWithoutInvoicesInput = {
@@ -555,6 +581,7 @@ export type CourseUncheckedCreateWithoutInvoicesInput = {
   deletedAt?: Date | string | null
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCourseInput
   weeklyReport?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
 }
 
 export type CourseCreateOrConnectWithoutInvoicesInput = {
@@ -583,6 +610,7 @@ export type CourseUpdateWithoutInvoicesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   enrollments?: Prisma.EnrollmentUpdateManyWithoutCourseNestedInput
   weeklyReport?: Prisma.WeeklyReportUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseUncheckedUpdateWithoutInvoicesInput = {
@@ -594,6 +622,75 @@ export type CourseUncheckedUpdateWithoutInvoicesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCourseNestedInput
+  weeklyReport?: Prisma.WeeklyReportUncheckedUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
+}
+
+export type CourseCreateWithoutStudyMaterialsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  courseFee: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCourseInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCourseInput
+  weeklyReport?: Prisma.WeeklyReportCreateNestedManyWithoutCourseInput
+}
+
+export type CourseUncheckedCreateWithoutStudyMaterialsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  courseFee: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCourseInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCourseInput
+  weeklyReport?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutCourseInput
+}
+
+export type CourseCreateOrConnectWithoutStudyMaterialsInput = {
+  where: Prisma.CourseWhereUniqueInput
+  create: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
+}
+
+export type CourseUpsertWithoutStudyMaterialsInput = {
+  update: Prisma.XOR<Prisma.CourseUpdateWithoutStudyMaterialsInput, Prisma.CourseUncheckedUpdateWithoutStudyMaterialsInput>
+  create: Prisma.XOR<Prisma.CourseCreateWithoutStudyMaterialsInput, Prisma.CourseUncheckedCreateWithoutStudyMaterialsInput>
+  where?: Prisma.CourseWhereInput
+}
+
+export type CourseUpdateToOneWithWhereWithoutStudyMaterialsInput = {
+  where?: Prisma.CourseWhereInput
+  data: Prisma.XOR<Prisma.CourseUpdateWithoutStudyMaterialsInput, Prisma.CourseUncheckedUpdateWithoutStudyMaterialsInput>
+}
+
+export type CourseUpdateWithoutStudyMaterialsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  courseFee?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutCourseNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCourseNestedInput
+  weeklyReport?: Prisma.WeeklyReportUpdateManyWithoutCourseNestedInput
+}
+
+export type CourseUncheckedUpdateWithoutStudyMaterialsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  courseFee?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCourseNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCourseNestedInput
   weeklyReport?: Prisma.WeeklyReportUncheckedUpdateManyWithoutCourseNestedInput
 }
 
@@ -607,6 +704,7 @@ export type CourseCreateWithoutWeeklyReportInput = {
   deletedAt?: Date | string | null
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutCourseInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutCourseInput
 }
 
 export type CourseUncheckedCreateWithoutWeeklyReportInput = {
@@ -619,6 +717,7 @@ export type CourseUncheckedCreateWithoutWeeklyReportInput = {
   deletedAt?: Date | string | null
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutCourseInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCourseInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutCourseInput
 }
 
 export type CourseCreateOrConnectWithoutWeeklyReportInput = {
@@ -647,6 +746,7 @@ export type CourseUpdateWithoutWeeklyReportInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   enrollments?: Prisma.EnrollmentUpdateManyWithoutCourseNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutCourseNestedInput
 }
 
 export type CourseUncheckedUpdateWithoutWeeklyReportInput = {
@@ -659,6 +759,7 @@ export type CourseUncheckedUpdateWithoutWeeklyReportInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutCourseNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCourseNestedInput
+  studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutCourseNestedInput
 }
 
 
@@ -670,12 +771,14 @@ export type CourseCountOutputType = {
   enrollments: number
   invoices: number
   weeklyReport: number
+  studyMaterials: number
 }
 
 export type CourseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enrollments?: boolean | CourseCountOutputTypeCountEnrollmentsArgs
   invoices?: boolean | CourseCountOutputTypeCountInvoicesArgs
   weeklyReport?: boolean | CourseCountOutputTypeCountWeeklyReportArgs
+  studyMaterials?: boolean | CourseCountOutputTypeCountStudyMaterialsArgs
 }
 
 /**
@@ -709,6 +812,13 @@ export type CourseCountOutputTypeCountWeeklyReportArgs<ExtArgs extends runtime.T
   where?: Prisma.WeeklyReportWhereInput
 }
 
+/**
+ * CourseCountOutputType without action
+ */
+export type CourseCountOutputTypeCountStudyMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudyMaterialWhereInput
+}
+
 
 export type CourseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -721,6 +831,7 @@ export type CourseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   enrollments?: boolean | Prisma.Course$enrollmentsArgs<ExtArgs>
   invoices?: boolean | Prisma.Course$invoicesArgs<ExtArgs>
   weeklyReport?: boolean | Prisma.Course$weeklyReportArgs<ExtArgs>
+  studyMaterials?: boolean | Prisma.Course$studyMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.CourseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["course"]>
 
@@ -759,6 +870,7 @@ export type CourseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   enrollments?: boolean | Prisma.Course$enrollmentsArgs<ExtArgs>
   invoices?: boolean | Prisma.Course$invoicesArgs<ExtArgs>
   weeklyReport?: boolean | Prisma.Course$weeklyReportArgs<ExtArgs>
+  studyMaterials?: boolean | Prisma.Course$studyMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.CourseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CourseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -770,6 +882,7 @@ export type $CoursePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     weeklyReport: Prisma.$WeeklyReportPayload<ExtArgs>[]
+    studyMaterials: Prisma.$StudyMaterialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1176,6 +1289,7 @@ export interface Prisma__CourseClient<T, Null = never, ExtArgs extends runtime.T
   enrollments<T extends Prisma.Course$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Course$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   weeklyReport<T extends Prisma.Course$weeklyReportArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$weeklyReportArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeeklyReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  studyMaterials<T extends Prisma.Course$studyMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Course$studyMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1669,6 +1783,30 @@ export type Course$weeklyReportArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.WeeklyReportScalarFieldEnum | Prisma.WeeklyReportScalarFieldEnum[]
+}
+
+/**
+ * Course.studyMaterials
+ */
+export type Course$studyMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudyMaterial
+   */
+  select?: Prisma.StudyMaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StudyMaterial
+   */
+  omit?: Prisma.StudyMaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudyMaterialInclude<ExtArgs> | null
+  where?: Prisma.StudyMaterialWhereInput
+  orderBy?: Prisma.StudyMaterialOrderByWithRelationInput | Prisma.StudyMaterialOrderByWithRelationInput[]
+  cursor?: Prisma.StudyMaterialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StudyMaterialScalarFieldEnum | Prisma.StudyMaterialScalarFieldEnum[]
 }
 
 /**
