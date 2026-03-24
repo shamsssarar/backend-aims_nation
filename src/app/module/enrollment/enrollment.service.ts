@@ -84,7 +84,18 @@ const getAllEnrollments = async (studentId: string) => {
   return result;
 };
 
-const getMyEnrollments = async (studentId: string) => {
+const getMyEnrollments = async (authUserId: string) => {
+  // 👉 1. THE FIX: Find the actual Student Profile using the Auth User ID
+  const studentProfile = await prisma.student.findUnique({
+    where: { userId: authUserId },
+  });
+
+  if (!studentProfile) {
+    throw new AppError(404, 'Student profile not found.');
+  }
+
+  const studentId = studentProfile.id;
+
   const result = await prisma.enrollment.findMany({
     where: {
       studentId: studentId,

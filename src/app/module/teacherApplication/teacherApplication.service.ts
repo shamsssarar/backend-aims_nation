@@ -1,5 +1,6 @@
 import AppError from '../../errorHelpers/AppError';
 import { prisma } from '../../lib/prisma';
+import bcrypt from 'bcryptjs';
 
 // 1. PUBLIC: Submit a new application
 const submitApplication = async (payload: any) => {
@@ -49,15 +50,27 @@ const hireApplicant = async (applicationId: string, payload: { salary: number; b
     // 2. Generate a temporary password (e.g., AimsNation2026!)
     const tempPassword = `AimsNation${new Date().getFullYear()}!`;
     // ⚠️ In production, ensure you hash this password before saving it to your auth table!
-
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(tempPassword, saltRounds);
     // 3. Create the Base User (Authentication)
     const newUser = await tx.user.create({
       data: {
         name: application.name,
         email: application.email,
         role: 'TEACHER', // Strictly locked to Teacher
-        emailVerified: true,
+
         // If your better-auth schema requires the password directly on the user table, add it here.
+      },
+    });
+    await tx.account.create({
+      data: {
+        id: crypto.randomUUID(),
+        userId: newUser.id,
+        accountId: application.email,
+        password: hashedPassword,
+        providerId: 'credential',
+        createdAt: new Date(), 
+        updatedAt: new Date(),
       },
     });
 

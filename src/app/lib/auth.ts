@@ -1,6 +1,7 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { prisma } from './prisma'; // Your prisma client instance
+import bcrypt from 'bcryptjs';
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -17,6 +18,15 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
+    password: {
+      // 👈 Tell better-auth how to hash and verify using bcrypt
+      hash: async (password) => {
+        return await bcrypt.hash(password, 10);
+      },
+      verify: async ({ hash, password }) => {
+        return await bcrypt.compare(password, hash);
+      },
+    },
   },
 
   // You can configure session limits, JWTs, etc., here later
