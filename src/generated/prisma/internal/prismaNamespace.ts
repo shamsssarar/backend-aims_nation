@@ -1493,6 +1493,10 @@ export const CourseScalarFieldEnum = {
   title: 'title',
   description: 'description',
   courseFee: 'courseFee',
+  teacherId: 'teacherId',
+  schedule: 'schedule',
+  roomNumber: 'roomNumber',
+  maxCapacity: 'maxCapacity',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'

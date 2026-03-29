@@ -7,6 +7,7 @@ import { ProfileRoutes } from '../module/profile/profile.route';
 import { TeacherApplicationRoutes } from '../module/teacherApplication/teacherApplication.route';
 import { StudyMaterialRoutes } from '../module/studyMaterial/studyMaterial.route';
 import { WeeklyReportRoutes } from '../module/weeklyReport/weeklyReport.route';
+import { TeacherRoutes } from '../module/teacher/teacher.route';
 
 const router = Router();
 
@@ -25,5 +26,7 @@ router.use('/careers', TeacherApplicationRoutes);
 router.use('/weeklyReports', WeeklyReportRoutes);
 
 router.use('/materials', StudyMaterialRoutes);
+
+router.use('/teachers', TeacherRoutes);
 
 export const IndexRoutes = router;

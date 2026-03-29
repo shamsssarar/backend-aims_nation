@@ -5,6 +5,14 @@ model Course {
   title       String
   description String?
   courseFee Int
+
+  teacherId String?
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+
+  schedule      String?         // e.g., "Sat/Sun 3:00 PM - 5:00 PM"
+  roomNumber    String?         // e.g., "Room 1", "Room 2"
+  maxCapacity   Int             @default(20) // Physical room limit
+
   enrollments Enrollment[]
   invoices Invoice[]
   weeklyReport WeeklyReport[]
