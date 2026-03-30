@@ -4,16 +4,9 @@ import { validateRequest } from '../../middleware/validateRequest';
 import { StudyMaterialValidations } from './studyMaterial.validation';
 
 import checkAuth from '../../middleware/checkAuth';
+import { upload } from '../../utils/upload';
 
 const router = express.Router();
-
-// 🔒 TEACHER/ADMIN ONLY: Upload a file
-router.post(
-  '/',
-  checkAuth(['ADMIN', 'TEACHER']),
-  validateRequest(StudyMaterialValidations.createStudyMaterialSchema),
-  StudyMaterialControllers.createStudyMaterial
-);
 
 // 🔒 EVERYONE: Get files for a course (Controller handles the security logic)
 router.get(
@@ -27,6 +20,17 @@ router.delete(
   '/:id',
   checkAuth(['ADMIN', 'TEACHER']),
   StudyMaterialControllers.deleteStudyMaterial
+);
+
+router.post(
+  '/',
+  checkAuth(['TEACHER']),
+  // 1st: Multer grabs the file and populates req.body
+  upload.single('file'),
+  // 2nd: Zod checks the newly populated req.body
+
+  // 3rd: Controller saves to database
+  StudyMaterialControllers.uploadMaterial
 );
 
 export const StudyMaterialRoutes = router;
