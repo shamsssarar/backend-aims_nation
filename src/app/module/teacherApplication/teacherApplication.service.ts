@@ -25,6 +25,12 @@ const getAllApplications = async () => {
     orderBy: { createdAt: 'desc' }, // Newest first
   });
 };
+const getApplicationById = async (id: string) => {
+  return await prisma.teacherApplication.findFirst({
+    where: { id },
+    select: { status: true },
+  });
+};
 
 // 3. ADMIN: Change status to REVIEWED or REJECTED
 const updateApplicationStatus = async (id: string, status: any) => {
@@ -69,7 +75,7 @@ const hireApplicant = async (applicationId: string, payload: { salary: number; b
         accountId: application.email,
         password: hashedPassword,
         providerId: 'credential',
-        createdAt: new Date(), 
+        createdAt: new Date(),
         updatedAt: new Date(),
       },
     });
@@ -103,6 +109,7 @@ const hireApplicant = async (applicationId: string, payload: { salary: number; b
 export const TeacherApplicationServices = {
   submitApplication,
   getAllApplications,
+  getApplicationById,
   updateApplicationStatus,
   hireApplicant,
 };

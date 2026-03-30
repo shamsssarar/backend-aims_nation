@@ -8,6 +8,8 @@ import { TeacherApplicationRoutes } from '../module/teacherApplication/teacherAp
 import { StudyMaterialRoutes } from '../module/studyMaterial/studyMaterial.route';
 import { WeeklyReportRoutes } from '../module/weeklyReport/weeklyReport.route';
 import { TeacherRoutes } from '../module/teacher/teacher.route';
+import { AdminRoutes } from '../module/admin/admin.route';
+import { StudentRoutes } from '../module/student/student.route';
 
 const router = Router();
 
@@ -28,5 +30,9 @@ router.use('/weeklyReports', WeeklyReportRoutes);
 router.use('/materials', StudyMaterialRoutes);
 
 router.use('/teachers', TeacherRoutes);
+
+router.use('/admin', AdminRoutes);
+
+router.use('/students', StudentRoutes);
 
 export const IndexRoutes = router;

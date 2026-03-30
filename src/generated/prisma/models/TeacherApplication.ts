@@ -222,6 +222,7 @@ export type TeacherApplicationWhereInput = {
   message?: Prisma.StringNullableFilter<"TeacherApplication"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TeacherApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TeacherApplication"> | Date | string
+  courses?: Prisma.CourseListRelationFilter
 }
 
 export type TeacherApplicationOrderByWithRelationInput = {
@@ -235,6 +236,7 @@ export type TeacherApplicationOrderByWithRelationInput = {
   message?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  courses?: Prisma.CourseOrderByRelationAggregateInput
 }
 
 export type TeacherApplicationWhereUniqueInput = Prisma.AtLeast<{
@@ -251,6 +253,7 @@ export type TeacherApplicationWhereUniqueInput = Prisma.AtLeast<{
   message?: Prisma.StringNullableFilter<"TeacherApplication"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TeacherApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TeacherApplication"> | Date | string
+  courses?: Prisma.CourseListRelationFilter
 }, "id" | "email">
 
 export type TeacherApplicationOrderByWithAggregationInput = {
@@ -296,6 +299,7 @@ export type TeacherApplicationCreateInput = {
   message?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  courses?: Prisma.CourseCreateNestedManyWithoutTeacherApplicantInput
 }
 
 export type TeacherApplicationUncheckedCreateInput = {
@@ -309,6 +313,7 @@ export type TeacherApplicationUncheckedCreateInput = {
   message?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherApplicantInput
 }
 
 export type TeacherApplicationUpdateInput = {
@@ -322,6 +327,7 @@ export type TeacherApplicationUpdateInput = {
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courses?: Prisma.CourseUpdateManyWithoutTeacherApplicantNestedInput
 }
 
 export type TeacherApplicationUncheckedUpdateInput = {
@@ -335,6 +341,7 @@ export type TeacherApplicationUncheckedUpdateInput = {
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courses?: Prisma.CourseUncheckedUpdateManyWithoutTeacherApplicantNestedInput
 }
 
 export type TeacherApplicationCreateManyInput = {
@@ -376,6 +383,11 @@ export type TeacherApplicationUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type TeacherApplicationNullableScalarRelationFilter = {
+  is?: Prisma.TeacherApplicationWhereInput | null
+  isNot?: Prisma.TeacherApplicationWhereInput | null
+}
+
 export type TeacherApplicationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -415,10 +427,123 @@ export type TeacherApplicationMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type TeacherApplicationCreateNestedOneWithoutCoursesInput = {
+  create?: Prisma.XOR<Prisma.TeacherApplicationCreateWithoutCoursesInput, Prisma.TeacherApplicationUncheckedCreateWithoutCoursesInput>
+  connectOrCreate?: Prisma.TeacherApplicationCreateOrConnectWithoutCoursesInput
+  connect?: Prisma.TeacherApplicationWhereUniqueInput
+}
+
+export type TeacherApplicationUpdateOneWithoutCoursesNestedInput = {
+  create?: Prisma.XOR<Prisma.TeacherApplicationCreateWithoutCoursesInput, Prisma.TeacherApplicationUncheckedCreateWithoutCoursesInput>
+  connectOrCreate?: Prisma.TeacherApplicationCreateOrConnectWithoutCoursesInput
+  upsert?: Prisma.TeacherApplicationUpsertWithoutCoursesInput
+  disconnect?: Prisma.TeacherApplicationWhereInput | boolean
+  delete?: Prisma.TeacherApplicationWhereInput | boolean
+  connect?: Prisma.TeacherApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TeacherApplicationUpdateToOneWithWhereWithoutCoursesInput, Prisma.TeacherApplicationUpdateWithoutCoursesInput>, Prisma.TeacherApplicationUncheckedUpdateWithoutCoursesInput>
+}
+
 export type EnumApplicationStatusFieldUpdateOperationsInput = {
   set?: $Enums.ApplicationStatus
 }
 
+export type TeacherApplicationCreateWithoutCoursesInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  specialty: string
+  resumeLink: string
+  status?: $Enums.ApplicationStatus
+  message?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TeacherApplicationUncheckedCreateWithoutCoursesInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  specialty: string
+  resumeLink: string
+  status?: $Enums.ApplicationStatus
+  message?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TeacherApplicationCreateOrConnectWithoutCoursesInput = {
+  where: Prisma.TeacherApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.TeacherApplicationCreateWithoutCoursesInput, Prisma.TeacherApplicationUncheckedCreateWithoutCoursesInput>
+}
+
+export type TeacherApplicationUpsertWithoutCoursesInput = {
+  update: Prisma.XOR<Prisma.TeacherApplicationUpdateWithoutCoursesInput, Prisma.TeacherApplicationUncheckedUpdateWithoutCoursesInput>
+  create: Prisma.XOR<Prisma.TeacherApplicationCreateWithoutCoursesInput, Prisma.TeacherApplicationUncheckedCreateWithoutCoursesInput>
+  where?: Prisma.TeacherApplicationWhereInput
+}
+
+export type TeacherApplicationUpdateToOneWithWhereWithoutCoursesInput = {
+  where?: Prisma.TeacherApplicationWhereInput
+  data: Prisma.XOR<Prisma.TeacherApplicationUpdateWithoutCoursesInput, Prisma.TeacherApplicationUncheckedUpdateWithoutCoursesInput>
+}
+
+export type TeacherApplicationUpdateWithoutCoursesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TeacherApplicationUncheckedUpdateWithoutCoursesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type TeacherApplicationCountOutputType
+ */
+
+export type TeacherApplicationCountOutputType = {
+  courses: number
+}
+
+export type TeacherApplicationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  courses?: boolean | TeacherApplicationCountOutputTypeCountCoursesArgs
+}
+
+/**
+ * TeacherApplicationCountOutputType without action
+ */
+export type TeacherApplicationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TeacherApplicationCountOutputType
+   */
+  select?: Prisma.TeacherApplicationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TeacherApplicationCountOutputType without action
+ */
+export type TeacherApplicationCountOutputTypeCountCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CourseWhereInput
+}
 
 
 export type TeacherApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -432,6 +557,8 @@ export type TeacherApplicationSelect<ExtArgs extends runtime.Types.Extensions.In
   message?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  courses?: boolean | Prisma.TeacherApplication$coursesArgs<ExtArgs>
+  _count?: boolean | Prisma.TeacherApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacherApplication"]>
 
 export type TeacherApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -474,10 +601,18 @@ export type TeacherApplicationSelectScalar = {
 }
 
 export type TeacherApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "specialty" | "resumeLink" | "status" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["teacherApplication"]>
+export type TeacherApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  courses?: boolean | Prisma.TeacherApplication$coursesArgs<ExtArgs>
+  _count?: boolean | Prisma.TeacherApplicationCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type TeacherApplicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TeacherApplicationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $TeacherApplicationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TeacherApplication"
-  objects: {}
+  objects: {
+    courses: Prisma.$CoursePayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -883,6 +1018,7 @@ readonly fields: TeacherApplicationFieldRefs;
  */
 export interface Prisma__TeacherApplicationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  courses<T extends Prisma.TeacherApplication$coursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TeacherApplication$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -939,6 +1075,10 @@ export type TeacherApplicationFindUniqueArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  /**
    * Filter, which TeacherApplication to fetch.
    */
   where: Prisma.TeacherApplicationWhereUniqueInput
@@ -957,6 +1097,10 @@ export type TeacherApplicationFindUniqueOrThrowArgs<ExtArgs extends runtime.Type
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  /**
    * Filter, which TeacherApplication to fetch.
    */
   where: Prisma.TeacherApplicationWhereUniqueInput
@@ -974,6 +1118,10 @@ export type TeacherApplicationFindFirstArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the TeacherApplication
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
   /**
    * Filter, which TeacherApplication to fetch.
    */
@@ -1023,6 +1171,10 @@ export type TeacherApplicationFindFirstOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  /**
    * Filter, which TeacherApplication to fetch.
    */
   where?: Prisma.TeacherApplicationWhereInput
@@ -1071,6 +1223,10 @@ export type TeacherApplicationFindManyArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  /**
    * Filter, which TeacherApplications to fetch.
    */
   where?: Prisma.TeacherApplicationWhereInput
@@ -1113,6 +1269,10 @@ export type TeacherApplicationCreateArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the TeacherApplication
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
   /**
    * The data needed to create a TeacherApplication.
    */
@@ -1161,6 +1321,10 @@ export type TeacherApplicationUpdateArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the TeacherApplication
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
   /**
    * The data needed to update a TeacherApplication.
    */
@@ -1228,6 +1392,10 @@ export type TeacherApplicationUpsertArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  /**
    * The filter to search for the TeacherApplication to update in case it exists.
    */
   where: Prisma.TeacherApplicationWhereUniqueInput
@@ -1254,6 +1422,10 @@ export type TeacherApplicationDeleteArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
+  /**
    * Filter which TeacherApplication to delete.
    */
   where: Prisma.TeacherApplicationWhereUniqueInput
@@ -1274,6 +1446,30 @@ export type TeacherApplicationDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * TeacherApplication.courses
+ */
+export type TeacherApplication$coursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Course
+   */
+  select?: Prisma.CourseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Course
+   */
+  omit?: Prisma.CourseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CourseInclude<ExtArgs> | null
+  where?: Prisma.CourseWhereInput
+  orderBy?: Prisma.CourseOrderByWithRelationInput | Prisma.CourseOrderByWithRelationInput[]
+  cursor?: Prisma.CourseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CourseScalarFieldEnum | Prisma.CourseScalarFieldEnum[]
+}
+
+/**
  * TeacherApplication without action
  */
 export type TeacherApplicationDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1285,4 +1481,8 @@ export type TeacherApplicationDefaultArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the TeacherApplication
    */
   omit?: Prisma.TeacherApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeacherApplicationInclude<ExtArgs> | null
 }

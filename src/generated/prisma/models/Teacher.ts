@@ -242,7 +242,7 @@ export type TeacherWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   courses?: Prisma.CourseListRelationFilter
-  weeklyAReports?: Prisma.WeeklyReportListRelationFilter
+  weeklyReports?: Prisma.WeeklyReportListRelationFilter
   studyMaterials?: Prisma.StudyMaterialListRelationFilter
 }
 
@@ -257,7 +257,7 @@ export type TeacherOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   courses?: Prisma.CourseOrderByRelationAggregateInput
-  weeklyAReports?: Prisma.WeeklyReportOrderByRelationAggregateInput
+  weeklyReports?: Prisma.WeeklyReportOrderByRelationAggregateInput
   studyMaterials?: Prisma.StudyMaterialOrderByRelationAggregateInput
 }
 
@@ -275,7 +275,7 @@ export type TeacherWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   courses?: Prisma.CourseListRelationFilter
-  weeklyAReports?: Prisma.WeeklyReportListRelationFilter
+  weeklyReports?: Prisma.WeeklyReportListRelationFilter
   studyMaterials?: Prisma.StudyMaterialListRelationFilter
 }, "id" | "userId">
 
@@ -319,7 +319,7 @@ export type TeacherCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
   courses?: Prisma.CourseCreateNestedManyWithoutTeacherInput
-  weeklyAReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
   studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutTeacherInput
 }
 
@@ -333,7 +333,7 @@ export type TeacherUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
-  weeklyAReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
   studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutTeacherInput
 }
 
@@ -347,7 +347,7 @@ export type TeacherUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
   courses?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
   studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutTeacherNestedInput
 }
 
@@ -361,7 +361,7 @@ export type TeacherUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
   studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
@@ -518,18 +518,18 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type TeacherCreateNestedOneWithoutWeeklyAReportsInput = {
-  create?: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyAReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyAReportsInput>
-  connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutWeeklyAReportsInput
+export type TeacherCreateNestedOneWithoutWeeklyReportsInput = {
+  create?: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyReportsInput>
+  connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutWeeklyReportsInput
   connect?: Prisma.TeacherWhereUniqueInput
 }
 
-export type TeacherUpdateOneRequiredWithoutWeeklyAReportsNestedInput = {
-  create?: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyAReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyAReportsInput>
-  connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutWeeklyAReportsInput
-  upsert?: Prisma.TeacherUpsertWithoutWeeklyAReportsInput
+export type TeacherUpdateOneRequiredWithoutWeeklyReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyReportsInput>
+  connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutWeeklyReportsInput
+  upsert?: Prisma.TeacherUpsertWithoutWeeklyReportsInput
   connect?: Prisma.TeacherWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TeacherUpdateToOneWithWhereWithoutWeeklyAReportsInput, Prisma.TeacherUpdateWithoutWeeklyAReportsInput>, Prisma.TeacherUncheckedUpdateWithoutWeeklyAReportsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TeacherUpdateToOneWithWhereWithoutWeeklyReportsInput, Prisma.TeacherUpdateWithoutWeeklyReportsInput>, Prisma.TeacherUncheckedUpdateWithoutWeeklyReportsInput>
 }
 
 export type TeacherCreateWithoutUserInput = {
@@ -541,7 +541,7 @@ export type TeacherCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseCreateNestedManyWithoutTeacherInput
-  weeklyAReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
   studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutTeacherInput
 }
 
@@ -554,7 +554,7 @@ export type TeacherUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
-  weeklyAReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
   studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutTeacherInput
 }
 
@@ -583,7 +583,7 @@ export type TeacherUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
   studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutTeacherNestedInput
 }
 
@@ -596,7 +596,7 @@ export type TeacherUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
   studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
@@ -609,7 +609,7 @@ export type TeacherCreateWithoutCoursesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
-  weeklyAReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
   studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutTeacherInput
 }
 
@@ -622,7 +622,7 @@ export type TeacherUncheckedCreateWithoutCoursesInput = {
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  weeklyAReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
   studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutTeacherInput
 }
 
@@ -651,7 +651,7 @@ export type TeacherUpdateWithoutCoursesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
   studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutTeacherNestedInput
 }
 
@@ -664,7 +664,7 @@ export type TeacherUncheckedUpdateWithoutCoursesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  weeklyAReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
   studyMaterials?: Prisma.StudyMaterialUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
@@ -678,7 +678,7 @@ export type TeacherCreateWithoutStudyMaterialsInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
   courses?: Prisma.CourseCreateNestedManyWithoutTeacherInput
-  weeklyAReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherUncheckedCreateWithoutStudyMaterialsInput = {
@@ -691,7 +691,7 @@ export type TeacherUncheckedCreateWithoutStudyMaterialsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
-  weeklyAReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherCreateOrConnectWithoutStudyMaterialsInput = {
@@ -720,7 +720,7 @@ export type TeacherUpdateWithoutStudyMaterialsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
   courses?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateWithoutStudyMaterialsInput = {
@@ -733,10 +733,10 @@ export type TeacherUncheckedUpdateWithoutStudyMaterialsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
-  weeklyAReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
+  weeklyReports?: Prisma.WeeklyReportUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
-export type TeacherCreateWithoutWeeklyAReportsInput = {
+export type TeacherCreateWithoutWeeklyReportsInput = {
   id?: string
   bio?: string | null
   salary?: number | null
@@ -749,7 +749,7 @@ export type TeacherCreateWithoutWeeklyAReportsInput = {
   studyMaterials?: Prisma.StudyMaterialCreateNestedManyWithoutTeacherInput
 }
 
-export type TeacherUncheckedCreateWithoutWeeklyAReportsInput = {
+export type TeacherUncheckedCreateWithoutWeeklyReportsInput = {
   id?: string
   bio?: string | null
   salary?: number | null
@@ -762,23 +762,23 @@ export type TeacherUncheckedCreateWithoutWeeklyAReportsInput = {
   studyMaterials?: Prisma.StudyMaterialUncheckedCreateNestedManyWithoutTeacherInput
 }
 
-export type TeacherCreateOrConnectWithoutWeeklyAReportsInput = {
+export type TeacherCreateOrConnectWithoutWeeklyReportsInput = {
   where: Prisma.TeacherWhereUniqueInput
-  create: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyAReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyAReportsInput>
+  create: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyReportsInput>
 }
 
-export type TeacherUpsertWithoutWeeklyAReportsInput = {
-  update: Prisma.XOR<Prisma.TeacherUpdateWithoutWeeklyAReportsInput, Prisma.TeacherUncheckedUpdateWithoutWeeklyAReportsInput>
-  create: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyAReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyAReportsInput>
+export type TeacherUpsertWithoutWeeklyReportsInput = {
+  update: Prisma.XOR<Prisma.TeacherUpdateWithoutWeeklyReportsInput, Prisma.TeacherUncheckedUpdateWithoutWeeklyReportsInput>
+  create: Prisma.XOR<Prisma.TeacherCreateWithoutWeeklyReportsInput, Prisma.TeacherUncheckedCreateWithoutWeeklyReportsInput>
   where?: Prisma.TeacherWhereInput
 }
 
-export type TeacherUpdateToOneWithWhereWithoutWeeklyAReportsInput = {
+export type TeacherUpdateToOneWithWhereWithoutWeeklyReportsInput = {
   where?: Prisma.TeacherWhereInput
-  data: Prisma.XOR<Prisma.TeacherUpdateWithoutWeeklyAReportsInput, Prisma.TeacherUncheckedUpdateWithoutWeeklyAReportsInput>
+  data: Prisma.XOR<Prisma.TeacherUpdateWithoutWeeklyReportsInput, Prisma.TeacherUncheckedUpdateWithoutWeeklyReportsInput>
 }
 
-export type TeacherUpdateWithoutWeeklyAReportsInput = {
+export type TeacherUpdateWithoutWeeklyReportsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -791,7 +791,7 @@ export type TeacherUpdateWithoutWeeklyAReportsInput = {
   studyMaterials?: Prisma.StudyMaterialUpdateManyWithoutTeacherNestedInput
 }
 
-export type TeacherUncheckedUpdateWithoutWeeklyAReportsInput = {
+export type TeacherUncheckedUpdateWithoutWeeklyReportsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -811,13 +811,13 @@ export type TeacherUncheckedUpdateWithoutWeeklyAReportsInput = {
 
 export type TeacherCountOutputType = {
   courses: number
-  weeklyAReports: number
+  weeklyReports: number
   studyMaterials: number
 }
 
 export type TeacherCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courses?: boolean | TeacherCountOutputTypeCountCoursesArgs
-  weeklyAReports?: boolean | TeacherCountOutputTypeCountWeeklyAReportsArgs
+  weeklyReports?: boolean | TeacherCountOutputTypeCountWeeklyReportsArgs
   studyMaterials?: boolean | TeacherCountOutputTypeCountStudyMaterialsArgs
 }
 
@@ -841,7 +841,7 @@ export type TeacherCountOutputTypeCountCoursesArgs<ExtArgs extends runtime.Types
 /**
  * TeacherCountOutputType without action
  */
-export type TeacherCountOutputTypeCountWeeklyAReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TeacherCountOutputTypeCountWeeklyReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.WeeklyReportWhereInput
 }
 
@@ -864,7 +864,7 @@ export type TeacherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   courses?: boolean | Prisma.Teacher$coursesArgs<ExtArgs>
-  weeklyAReports?: boolean | Prisma.Teacher$weeklyAReportsArgs<ExtArgs>
+  weeklyReports?: boolean | Prisma.Teacher$weeklyReportsArgs<ExtArgs>
   studyMaterials?: boolean | Prisma.Teacher$studyMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.TeacherCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacher"]>
@@ -908,7 +908,7 @@ export type TeacherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type TeacherInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   courses?: boolean | Prisma.Teacher$coursesArgs<ExtArgs>
-  weeklyAReports?: boolean | Prisma.Teacher$weeklyAReportsArgs<ExtArgs>
+  weeklyReports?: boolean | Prisma.Teacher$weeklyReportsArgs<ExtArgs>
   studyMaterials?: boolean | Prisma.Teacher$studyMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.TeacherCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -924,7 +924,7 @@ export type $TeacherPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     courses: Prisma.$CoursePayload<ExtArgs>[]
-    weeklyAReports: Prisma.$WeeklyReportPayload<ExtArgs>[]
+    weeklyReports: Prisma.$WeeklyReportPayload<ExtArgs>[]
     studyMaterials: Prisma.$StudyMaterialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1332,7 +1332,7 @@ export interface Prisma__TeacherClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   courses<T extends Prisma.Teacher$coursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Teacher$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  weeklyAReports<T extends Prisma.Teacher$weeklyAReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Teacher$weeklyAReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeeklyReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weeklyReports<T extends Prisma.Teacher$weeklyReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Teacher$weeklyReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeeklyReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   studyMaterials<T extends Prisma.Teacher$studyMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Teacher$studyMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudyMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1791,9 +1791,9 @@ export type Teacher$coursesArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Teacher.weeklyAReports
+ * Teacher.weeklyReports
  */
-export type Teacher$weeklyAReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Teacher$weeklyReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the WeeklyReport
    */

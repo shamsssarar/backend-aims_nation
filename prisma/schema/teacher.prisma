@@ -10,7 +10,7 @@ model Teacher {
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   courses        Course[]
-  weeklyAReports WeeklyReport[]
+  weeklyReports WeeklyReport[]
   studyMaterials StudyMaterial[]
   // Teachers will eventually link to Courses/Classes here
   

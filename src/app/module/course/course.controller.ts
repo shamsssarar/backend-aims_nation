@@ -38,6 +38,25 @@ const getCourseById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getCourseRoster = catchAsync(async (req: Request, res: Response) => {
+  // 1. Grab the Teacher's ID from the Auth Middleware
+  // (Depending on your JWT payload, this might be req.user.id or req.user.userId)
+  const userId = (req as any).user.id;
+
+  // 2. Grab the Course ID from the URL parameters (e.g., /api/v1/courses/:courseId/roster)
+  const { courseId } = req.params;
+
+  // 3. Hand off to the Service we just built
+  const result = await CourseServices.getCourseRoster(userId, courseId as string);
+
+  // 4. Send the perfectly formatted array back to the frontend
+  res.status(200).json({
+    success: true,
+    message: 'Course roster retrieved successfully!',
+    data: result,
+  });
+});
+
 const updateCourse = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await CourseServices.updateCourse(id as string, req.body);
@@ -68,4 +87,5 @@ export const CourseControllers = {
   getCourseById,
   updateCourse,
   deleteCourse,
+  getCourseRoster,
 };

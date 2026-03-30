@@ -373,7 +373,7 @@ export type WeeklyReportCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutWeeklyReportsInput
-  teacher: Prisma.TeacherCreateNestedOneWithoutWeeklyAReportsInput
+  teacher: Prisma.TeacherCreateNestedOneWithoutWeeklyReportsInput
   course: Prisma.CourseCreateNestedOneWithoutWeeklyReportInput
 }
 
@@ -403,7 +403,7 @@ export type WeeklyReportUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutWeeklyReportsNestedInput
-  teacher?: Prisma.TeacherUpdateOneRequiredWithoutWeeklyAReportsNestedInput
+  teacher?: Prisma.TeacherUpdateOneRequiredWithoutWeeklyReportsNestedInput
   course?: Prisma.CourseUpdateOneRequiredWithoutWeeklyReportNestedInput
 }
 
@@ -672,7 +672,7 @@ export type WeeklyReportCreateWithoutCourseInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutWeeklyReportsInput
-  teacher: Prisma.TeacherCreateNestedOneWithoutWeeklyAReportsInput
+  teacher: Prisma.TeacherCreateNestedOneWithoutWeeklyReportsInput
 }
 
 export type WeeklyReportUncheckedCreateWithoutCourseInput = {
@@ -743,7 +743,7 @@ export type WeeklyReportCreateWithoutStudentInput = {
   teacherComments?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  teacher: Prisma.TeacherCreateNestedOneWithoutWeeklyAReportsInput
+  teacher: Prisma.TeacherCreateNestedOneWithoutWeeklyReportsInput
   course: Prisma.CourseCreateNestedOneWithoutWeeklyReportInput
 }
 
@@ -866,7 +866,7 @@ export type WeeklyReportUpdateWithoutCourseInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutWeeklyReportsNestedInput
-  teacher?: Prisma.TeacherUpdateOneRequiredWithoutWeeklyAReportsNestedInput
+  teacher?: Prisma.TeacherUpdateOneRequiredWithoutWeeklyReportsNestedInput
 }
 
 export type WeeklyReportUncheckedUpdateWithoutCourseInput = {
@@ -921,7 +921,7 @@ export type WeeklyReportUpdateWithoutStudentInput = {
   teacherComments?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  teacher?: Prisma.TeacherUpdateOneRequiredWithoutWeeklyAReportsNestedInput
+  teacher?: Prisma.TeacherUpdateOneRequiredWithoutWeeklyReportsNestedInput
   course?: Prisma.CourseUpdateOneRequiredWithoutWeeklyReportNestedInput
 }
 

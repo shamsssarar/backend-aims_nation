@@ -14,6 +14,12 @@ router.post(
   TeacherApplicationControllers.submitApplication
 );
 
+router.get(
+  '/:id',
+  checkAuth(['ADMIN']), // Only Admins can view individual applications
+  TeacherApplicationControllers.getApplicationById
+);
+
 // 🔒 ADMIN ONLY: View the talent pool
 router.get('/', checkAuth(['ADMIN']), TeacherApplicationControllers.getAllApplications);
 

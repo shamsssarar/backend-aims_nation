@@ -20,7 +20,7 @@ enum PaymentStatus {
 enum BehaviorStatus {
   EXCEPTIONAL
   NORMAL
-  NEEDS_ATTENTION
+  NEEDS_IMPROVEMENT
 }
 
 enum ApplicationStatus {

@@ -30,6 +30,28 @@ const getMyClasses = async (userId: string) => {
   return teacherProfile.courses;
 };
 
+const getAllTeachers = async () => {
+  const teachers = await prisma.teacher.findMany({
+    include: {
+      user: {
+        select: {
+          name: true,
+          email: true,
+        }
+      }
+    }
+  });
+
+  // Let's format it nicely for the frontend dropdown!
+  return teachers.map(teacher => ({
+    id: teacher.id,
+    userId: teacher.userId,
+    name: teacher.user.name,
+    email: teacher.user.email
+  }));
+};
+
 export const TeacherServices = {
   getMyClasses,
+  getAllTeachers,
 };

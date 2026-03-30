@@ -7,6 +7,8 @@ model TeacherApplication {
   resumeLink  String            // A URL to their Google Drive or portfolio
   status      ApplicationStatus @default(PENDING)
 
+  courses     Course[]
+
   // Optional: A small cover letter or note from the applicant
   message     String?           @db.Text
 

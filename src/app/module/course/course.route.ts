@@ -14,6 +14,12 @@ router.post(
   CourseControllers.createCourse
 );
 
+router.get(
+  '/:courseId/roster',
+  checkAuth(['TEACHER', 'ADMIN']), // Only Teachers and Admins can see the roster
+  CourseControllers.getCourseRoster
+);
+
 router.get('/', CourseControllers.getAllCourses);
 
 router.get('/:id', CourseControllers.getCourseById);
@@ -25,6 +31,6 @@ router.patch(
   CourseControllers.updateCourse
 );
 
-router.delete('/:id', CourseControllers.deleteCourse);
+router.delete('/:id', checkAuth(['ADMIN']), CourseControllers.deleteCourse);
 
 export const CourseRoutes = router;

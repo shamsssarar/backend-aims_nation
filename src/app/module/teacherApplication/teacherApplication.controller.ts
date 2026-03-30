@@ -37,6 +37,18 @@ const updateApplicationStatus = catchAsync(async (req: Request, res: Response) =
   });
 });
 
+const getApplicationById = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await TeacherApplicationServices.getApplicationById(id as string);
+
+  sendResponse(res, {
+    httpStatusCode: 200,
+    success: true,
+    message: 'Application retrieved successfully',
+    data: result,
+  });
+});
+
 const hireApplicant = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params; // The Application ID
 
@@ -53,6 +65,7 @@ const hireApplicant = catchAsync(async (req: Request, res: Response) => {
 export const TeacherApplicationControllers = {
   submitApplication,
   getAllApplications,
+  getApplicationById,
   updateApplicationStatus,
   hireApplicant,
 };

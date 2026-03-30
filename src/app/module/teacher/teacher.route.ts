@@ -6,10 +6,12 @@ import checkAuth from '../../middleware/checkAuth'; // Adjust path to your check
 const router = express.Router();
 
 // Only TEACHERS and ADMINS are allowed to view this
+router.get('/my-classes', checkAuth(['TEACHER', 'ADMIN']), TeacherController.getMyClasses);
+
 router.get(
-  '/my-classes',
-  checkAuth(['TEACHER', 'ADMIN']),
-  TeacherController.getMyClasses
+  '/',
+  checkAuth(['ADMIN']), // Only Admins need the full list of teachers to assign them
+  TeacherController.getAllTeachers
 );
 
 export const TeacherRoutes = router;
