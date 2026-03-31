@@ -5,9 +5,14 @@ import { PaymentServices } from './payment.service';
 
 const createPayment = catchAsync(async (req: Request, res: Response) => {
   const studentId = req.user?.id as string;
-  const { courseId } = req.body;
+  const { courseId, paymentMethod, transactionId } = req.body;
 
-  const result = await PaymentServices.createPendingPayment(studentId, courseId);
+  const result = await PaymentServices.createPendingPayment(
+    studentId,
+    courseId,
+    paymentMethod,
+    transactionId
+  );
 
   sendResponse(res, {
     httpStatusCode: 201,

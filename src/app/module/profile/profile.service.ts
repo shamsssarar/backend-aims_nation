@@ -20,7 +20,7 @@ const createStudentProfile = async (userId: string, payload: any) => {
   const result = await prisma.student.create({
     data: {
       userId,
-      parentContactNumber: payload.parentContactNumber,
+      contactNo: payload.contactNo,
       schoolGrade: payload.schoolGrade,
       address: payload.address,
       dateOfBirth: payload.dateOfBirth ? new Date(payload.dateOfBirth) : null,

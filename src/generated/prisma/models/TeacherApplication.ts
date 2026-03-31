@@ -30,6 +30,7 @@ export type TeacherApplicationMinAggregateOutputType = {
   email: string | null
   phone: string | null
   specialty: string | null
+  experience: string | null
   resumeLink: string | null
   status: $Enums.ApplicationStatus | null
   message: string | null
@@ -43,6 +44,7 @@ export type TeacherApplicationMaxAggregateOutputType = {
   email: string | null
   phone: string | null
   specialty: string | null
+  experience: string | null
   resumeLink: string | null
   status: $Enums.ApplicationStatus | null
   message: string | null
@@ -56,6 +58,7 @@ export type TeacherApplicationCountAggregateOutputType = {
   email: number
   phone: number
   specialty: number
+  experience: number
   resumeLink: number
   status: number
   message: number
@@ -71,6 +74,7 @@ export type TeacherApplicationMinAggregateInputType = {
   email?: true
   phone?: true
   specialty?: true
+  experience?: true
   resumeLink?: true
   status?: true
   message?: true
@@ -84,6 +88,7 @@ export type TeacherApplicationMaxAggregateInputType = {
   email?: true
   phone?: true
   specialty?: true
+  experience?: true
   resumeLink?: true
   status?: true
   message?: true
@@ -97,6 +102,7 @@ export type TeacherApplicationCountAggregateInputType = {
   email?: true
   phone?: true
   specialty?: true
+  experience?: true
   resumeLink?: true
   status?: true
   message?: true
@@ -183,6 +189,7 @@ export type TeacherApplicationGroupByOutputType = {
   email: string
   phone: string
   specialty: string
+  experience: string | null
   resumeLink: string
   status: $Enums.ApplicationStatus
   message: string | null
@@ -217,6 +224,7 @@ export type TeacherApplicationWhereInput = {
   email?: Prisma.StringFilter<"TeacherApplication"> | string
   phone?: Prisma.StringFilter<"TeacherApplication"> | string
   specialty?: Prisma.StringFilter<"TeacherApplication"> | string
+  experience?: Prisma.StringNullableFilter<"TeacherApplication"> | string | null
   resumeLink?: Prisma.StringFilter<"TeacherApplication"> | string
   status?: Prisma.EnumApplicationStatusFilter<"TeacherApplication"> | $Enums.ApplicationStatus
   message?: Prisma.StringNullableFilter<"TeacherApplication"> | string | null
@@ -231,6 +239,7 @@ export type TeacherApplicationOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   specialty?: Prisma.SortOrder
+  experience?: Prisma.SortOrderInput | Prisma.SortOrder
   resumeLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
   message?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -248,6 +257,7 @@ export type TeacherApplicationWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"TeacherApplication"> | string
   phone?: Prisma.StringFilter<"TeacherApplication"> | string
   specialty?: Prisma.StringFilter<"TeacherApplication"> | string
+  experience?: Prisma.StringNullableFilter<"TeacherApplication"> | string | null
   resumeLink?: Prisma.StringFilter<"TeacherApplication"> | string
   status?: Prisma.EnumApplicationStatusFilter<"TeacherApplication"> | $Enums.ApplicationStatus
   message?: Prisma.StringNullableFilter<"TeacherApplication"> | string | null
@@ -262,6 +272,7 @@ export type TeacherApplicationOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   specialty?: Prisma.SortOrder
+  experience?: Prisma.SortOrderInput | Prisma.SortOrder
   resumeLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
   message?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -281,6 +292,7 @@ export type TeacherApplicationScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"TeacherApplication"> | string
   phone?: Prisma.StringWithAggregatesFilter<"TeacherApplication"> | string
   specialty?: Prisma.StringWithAggregatesFilter<"TeacherApplication"> | string
+  experience?: Prisma.StringNullableWithAggregatesFilter<"TeacherApplication"> | string | null
   resumeLink?: Prisma.StringWithAggregatesFilter<"TeacherApplication"> | string
   status?: Prisma.EnumApplicationStatusWithAggregatesFilter<"TeacherApplication"> | $Enums.ApplicationStatus
   message?: Prisma.StringNullableWithAggregatesFilter<"TeacherApplication"> | string | null
@@ -294,6 +306,7 @@ export type TeacherApplicationCreateInput = {
   email: string
   phone: string
   specialty: string
+  experience?: string | null
   resumeLink: string
   status?: $Enums.ApplicationStatus
   message?: string | null
@@ -308,6 +321,7 @@ export type TeacherApplicationUncheckedCreateInput = {
   email: string
   phone: string
   specialty: string
+  experience?: string | null
   resumeLink: string
   status?: $Enums.ApplicationStatus
   message?: string | null
@@ -322,6 +336,7 @@ export type TeacherApplicationUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -336,6 +351,7 @@ export type TeacherApplicationUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -350,6 +366,7 @@ export type TeacherApplicationCreateManyInput = {
   email: string
   phone: string
   specialty: string
+  experience?: string | null
   resumeLink: string
   status?: $Enums.ApplicationStatus
   message?: string | null
@@ -363,6 +380,7 @@ export type TeacherApplicationUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -376,6 +394,7 @@ export type TeacherApplicationUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -394,6 +413,7 @@ export type TeacherApplicationCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   specialty?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
   resumeLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
   message?: Prisma.SortOrder
@@ -407,6 +427,7 @@ export type TeacherApplicationMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   specialty?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
   resumeLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
   message?: Prisma.SortOrder
@@ -420,6 +441,7 @@ export type TeacherApplicationMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   specialty?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
   resumeLink?: Prisma.SortOrder
   status?: Prisma.SortOrder
   message?: Prisma.SortOrder
@@ -453,6 +475,7 @@ export type TeacherApplicationCreateWithoutCoursesInput = {
   email: string
   phone: string
   specialty: string
+  experience?: string | null
   resumeLink: string
   status?: $Enums.ApplicationStatus
   message?: string | null
@@ -466,6 +489,7 @@ export type TeacherApplicationUncheckedCreateWithoutCoursesInput = {
   email: string
   phone: string
   specialty: string
+  experience?: string | null
   resumeLink: string
   status?: $Enums.ApplicationStatus
   message?: string | null
@@ -495,6 +519,7 @@ export type TeacherApplicationUpdateWithoutCoursesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -508,6 +533,7 @@ export type TeacherApplicationUncheckedUpdateWithoutCoursesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   specialty?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -552,6 +578,7 @@ export type TeacherApplicationSelect<ExtArgs extends runtime.Types.Extensions.In
   email?: boolean
   phone?: boolean
   specialty?: boolean
+  experience?: boolean
   resumeLink?: boolean
   status?: boolean
   message?: boolean
@@ -567,6 +594,7 @@ export type TeacherApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.
   email?: boolean
   phone?: boolean
   specialty?: boolean
+  experience?: boolean
   resumeLink?: boolean
   status?: boolean
   message?: boolean
@@ -580,6 +608,7 @@ export type TeacherApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.
   email?: boolean
   phone?: boolean
   specialty?: boolean
+  experience?: boolean
   resumeLink?: boolean
   status?: boolean
   message?: boolean
@@ -593,6 +622,7 @@ export type TeacherApplicationSelectScalar = {
   email?: boolean
   phone?: boolean
   specialty?: boolean
+  experience?: boolean
   resumeLink?: boolean
   status?: boolean
   message?: boolean
@@ -600,7 +630,7 @@ export type TeacherApplicationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type TeacherApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "specialty" | "resumeLink" | "status" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["teacherApplication"]>
+export type TeacherApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "specialty" | "experience" | "resumeLink" | "status" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["teacherApplication"]>
 export type TeacherApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courses?: boolean | Prisma.TeacherApplication$coursesArgs<ExtArgs>
   _count?: boolean | Prisma.TeacherApplicationCountOutputTypeDefaultArgs<ExtArgs>
@@ -619,6 +649,7 @@ export type $TeacherApplicationPayload<ExtArgs extends runtime.Types.Extensions.
     email: string
     phone: string
     specialty: string
+    experience: string | null
     resumeLink: string
     status: $Enums.ApplicationStatus
     message: string | null
@@ -1053,6 +1084,7 @@ export interface TeacherApplicationFieldRefs {
   readonly email: Prisma.FieldRef<"TeacherApplication", 'String'>
   readonly phone: Prisma.FieldRef<"TeacherApplication", 'String'>
   readonly specialty: Prisma.FieldRef<"TeacherApplication", 'String'>
+  readonly experience: Prisma.FieldRef<"TeacherApplication", 'String'>
   readonly resumeLink: Prisma.FieldRef<"TeacherApplication", 'String'>
   readonly status: Prisma.FieldRef<"TeacherApplication", 'ApplicationStatus'>
   readonly message: Prisma.FieldRef<"TeacherApplication", 'String'>

@@ -2,6 +2,7 @@ model Teacher {
   id             String   @id @default(uuid())
   bio            String?
   salary         Int?
+  contactNo      String?
   certifications String?
   hireDate       DateTime @default(now())
 

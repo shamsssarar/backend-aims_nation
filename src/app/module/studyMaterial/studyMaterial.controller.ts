@@ -8,7 +8,7 @@ import { uploadFileToCloudinary } from '../../utils/cloudinary';
 
 const getMaterialsForCourse = catchAsync(async (req: Request, res: Response) => {
   const authUserId = req.user?.id as string;
-  const role = (req.user as any).role;
+  const role = (req.user as any).role?.toUpperCase();
   const { courseId } = req.params;
 
   let result;

@@ -3,6 +3,7 @@ import AppError from '../../errorHelpers/AppError';
 import { prisma } from '../../lib/prisma'; // Adjust path to your prisma instance
 
 const getMyClasses = async (userId: string) => {
+  console.log('🔍 SEARCHING FOR TEACHER WITH USER ID:', userId);
   // 1. Find the Teacher profile using the authenticated User's ID
   const teacherProfile = await prisma.teacher.findUnique({
     where: { userId },
@@ -12,15 +13,17 @@ const getMyClasses = async (userId: string) => {
         include: {
           // 3. Count how many students are enrolled in each class
           _count: {
-            select: { enrollments: true }
-          }
+            select: { enrollments: true },
+          },
         },
         orderBy: {
-          createdAt: 'desc'
-        }
-      }
-    }
+          createdAt: 'desc',
+        },
+      },
+    },
   });
+  console.log('🔍 FOUND TEACHER PROFILE:', teacherProfile?.id);
+  console.log('🔍 FOUND COURSES:', teacherProfile?.courses?.length);
 
   if (!teacherProfile) {
     throw new AppError(404, 'Teacher profile not found. Please complete your profile setup first.');
@@ -37,21 +40,38 @@ const getAllTeachers = async () => {
         select: {
           name: true,
           email: true,
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   // Let's format it nicely for the frontend dropdown!
-  return teachers.map(teacher => ({
+  return teachers.map((teacher) => ({
     id: teacher.id,
     userId: teacher.userId,
     name: teacher.user.name,
-    email: teacher.user.email
+    email: teacher.user.email,
+    salary: teacher.salary,
+    contactNo: teacher.contactNo,
   }));
 };
+
+const updateTeacher = async (
+  id: string,
+  // We'll let the Admin update Salary, Bio, and Contact Number
+  payload: Partial<{ salary?: number; contactNo?: string }>
+) => {
+  const result = await prisma.teacher.update({
+    where: { id },
+    data: payload,
+  });
+  return result;
+};
+
+// Export it
 
 export const TeacherServices = {
   getMyClasses,
   getAllTeachers,
+  updateTeacher,
 };

@@ -1,10 +1,12 @@
 model Student {
   id                  String   @id @default(uuid())
-  parentContactNumber String?
+  contactNo String?
+  fathersName String?
+  mothersName String?
   schoolGrade         String?
   dateOfBirth         DateTime?
   address             String?
-
+bloodGroup String?
   // The 1-to-1 link to the Auth table
   userId              String   @unique
   user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)

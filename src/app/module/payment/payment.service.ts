@@ -3,7 +3,12 @@ import { prisma } from '../../lib/prisma';
 
 // 1. Student requests to join a course
 // Notice I renamed the parameter to authUserId to make it obvious!
-const createPendingPayment = async (authUserId: string, courseId: string) => {
+const createPendingPayment = async (
+  authUserId: string,
+  courseId: string,
+  paymentMethod: string,
+  transactionId: string
+) => {
   // 👉 1. THE FIX: Find the actual Student Profile using the Auth User ID
   const studentProfile = await prisma.student.findUnique({
     where: { userId: authUserId },
@@ -39,6 +44,8 @@ const createPendingPayment = async (authUserId: string, courseId: string) => {
       courseId,
       amount: course.courseFee,
       status: 'PENDING',
+      transactionId,
+      paymentMethod,
     },
   });
   return result;
@@ -72,10 +79,20 @@ const confirmPaymentAndEnroll = async (paymentId: string) => {
 };
 
 // 3. For the Student Dashboard
-const getMyPayments = async (studentId: string) => {
+// Inside payment.service.ts
+const getMyPayments = async (authUserId: string) => {
+  // 1. Find the actual Student Profile first!
+  const studentProfile = await prisma.student.findUnique({
+    where: { userId: authUserId },
+  });
+
+  if (!studentProfile) return []; // If no profile, they have no payments
+
+  // 2. Search using the Student Profile ID!
   return await prisma.invoice.findMany({
-    where: { studentId },
+    where: { studentId: studentProfile.id },
     include: { course: { select: { title: true } } },
+    
     orderBy: { createdAt: 'desc' },
   });
 };

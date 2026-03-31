@@ -38,6 +38,7 @@ export type TeacherMinAggregateOutputType = {
   id: string | null
   bio: string | null
   salary: number | null
+  contactNo: string | null
   certifications: string | null
   hireDate: Date | null
   userId: string | null
@@ -49,6 +50,7 @@ export type TeacherMaxAggregateOutputType = {
   id: string | null
   bio: string | null
   salary: number | null
+  contactNo: string | null
   certifications: string | null
   hireDate: Date | null
   userId: string | null
@@ -60,6 +62,7 @@ export type TeacherCountAggregateOutputType = {
   id: number
   bio: number
   salary: number
+  contactNo: number
   certifications: number
   hireDate: number
   userId: number
@@ -81,6 +84,7 @@ export type TeacherMinAggregateInputType = {
   id?: true
   bio?: true
   salary?: true
+  contactNo?: true
   certifications?: true
   hireDate?: true
   userId?: true
@@ -92,6 +96,7 @@ export type TeacherMaxAggregateInputType = {
   id?: true
   bio?: true
   salary?: true
+  contactNo?: true
   certifications?: true
   hireDate?: true
   userId?: true
@@ -103,6 +108,7 @@ export type TeacherCountAggregateInputType = {
   id?: true
   bio?: true
   salary?: true
+  contactNo?: true
   certifications?: true
   hireDate?: true
   userId?: true
@@ -201,6 +207,7 @@ export type TeacherGroupByOutputType = {
   id: string
   bio: string | null
   salary: number | null
+  contactNo: string | null
   certifications: string | null
   hireDate: Date
   userId: string
@@ -235,6 +242,7 @@ export type TeacherWhereInput = {
   id?: Prisma.StringFilter<"Teacher"> | string
   bio?: Prisma.StringNullableFilter<"Teacher"> | string | null
   salary?: Prisma.IntNullableFilter<"Teacher"> | number | null
+  contactNo?: Prisma.StringNullableFilter<"Teacher"> | string | null
   certifications?: Prisma.StringNullableFilter<"Teacher"> | string | null
   hireDate?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   userId?: Prisma.StringFilter<"Teacher"> | string
@@ -250,6 +258,7 @@ export type TeacherOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactNo?: Prisma.SortOrderInput | Prisma.SortOrder
   certifications?: Prisma.SortOrderInput | Prisma.SortOrder
   hireDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -269,6 +278,7 @@ export type TeacherWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TeacherWhereInput | Prisma.TeacherWhereInput[]
   bio?: Prisma.StringNullableFilter<"Teacher"> | string | null
   salary?: Prisma.IntNullableFilter<"Teacher"> | number | null
+  contactNo?: Prisma.StringNullableFilter<"Teacher"> | string | null
   certifications?: Prisma.StringNullableFilter<"Teacher"> | string | null
   hireDate?: Prisma.DateTimeFilter<"Teacher"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Teacher"> | Date | string
@@ -283,6 +293,7 @@ export type TeacherOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactNo?: Prisma.SortOrderInput | Prisma.SortOrder
   certifications?: Prisma.SortOrderInput | Prisma.SortOrder
   hireDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -302,6 +313,7 @@ export type TeacherScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Teacher"> | string
   bio?: Prisma.StringNullableWithAggregatesFilter<"Teacher"> | string | null
   salary?: Prisma.IntNullableWithAggregatesFilter<"Teacher"> | number | null
+  contactNo?: Prisma.StringNullableWithAggregatesFilter<"Teacher"> | string | null
   certifications?: Prisma.StringNullableWithAggregatesFilter<"Teacher"> | string | null
   hireDate?: Prisma.DateTimeWithAggregatesFilter<"Teacher"> | Date | string
   userId?: Prisma.StringWithAggregatesFilter<"Teacher"> | string
@@ -313,6 +325,7 @@ export type TeacherCreateInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   createdAt?: Date | string
@@ -327,6 +340,7 @@ export type TeacherUncheckedCreateInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   userId: string
@@ -341,6 +355,7 @@ export type TeacherUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -355,6 +370,7 @@ export type TeacherUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -369,6 +385,7 @@ export type TeacherCreateManyInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   userId: string
@@ -380,6 +397,7 @@ export type TeacherUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -390,6 +408,7 @@ export type TeacherUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -411,6 +430,7 @@ export type TeacherCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   salary?: Prisma.SortOrder
+  contactNo?: Prisma.SortOrder
   certifications?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -426,6 +446,7 @@ export type TeacherMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   salary?: Prisma.SortOrder
+  contactNo?: Prisma.SortOrder
   certifications?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -437,6 +458,7 @@ export type TeacherMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   salary?: Prisma.SortOrder
+  contactNo?: Prisma.SortOrder
   certifications?: Prisma.SortOrder
   hireDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -536,6 +558,7 @@ export type TeacherCreateWithoutUserInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   createdAt?: Date | string
@@ -549,6 +572,7 @@ export type TeacherUncheckedCreateWithoutUserInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   createdAt?: Date | string
@@ -578,6 +602,7 @@ export type TeacherUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -591,6 +616,7 @@ export type TeacherUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -604,6 +630,7 @@ export type TeacherCreateWithoutCoursesInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   createdAt?: Date | string
@@ -617,6 +644,7 @@ export type TeacherUncheckedCreateWithoutCoursesInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   userId: string
@@ -646,6 +674,7 @@ export type TeacherUpdateWithoutCoursesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -659,6 +688,7 @@ export type TeacherUncheckedUpdateWithoutCoursesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -672,6 +702,7 @@ export type TeacherCreateWithoutStudyMaterialsInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   createdAt?: Date | string
@@ -685,6 +716,7 @@ export type TeacherUncheckedCreateWithoutStudyMaterialsInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   userId: string
@@ -714,6 +746,7 @@ export type TeacherUpdateWithoutStudyMaterialsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -727,6 +760,7 @@ export type TeacherUncheckedUpdateWithoutStudyMaterialsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -740,6 +774,7 @@ export type TeacherCreateWithoutWeeklyReportsInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   createdAt?: Date | string
@@ -753,6 +788,7 @@ export type TeacherUncheckedCreateWithoutWeeklyReportsInput = {
   id?: string
   bio?: string | null
   salary?: number | null
+  contactNo?: string | null
   certifications?: string | null
   hireDate?: Date | string
   userId: string
@@ -782,6 +818,7 @@ export type TeacherUpdateWithoutWeeklyReportsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -795,6 +832,7 @@ export type TeacherUncheckedUpdateWithoutWeeklyReportsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contactNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certifications?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hireDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -857,6 +895,7 @@ export type TeacherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   bio?: boolean
   salary?: boolean
+  contactNo?: boolean
   certifications?: boolean
   hireDate?: boolean
   userId?: boolean
@@ -873,6 +912,7 @@ export type TeacherSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   bio?: boolean
   salary?: boolean
+  contactNo?: boolean
   certifications?: boolean
   hireDate?: boolean
   userId?: boolean
@@ -885,6 +925,7 @@ export type TeacherSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   bio?: boolean
   salary?: boolean
+  contactNo?: boolean
   certifications?: boolean
   hireDate?: boolean
   userId?: boolean
@@ -897,6 +938,7 @@ export type TeacherSelectScalar = {
   id?: boolean
   bio?: boolean
   salary?: boolean
+  contactNo?: boolean
   certifications?: boolean
   hireDate?: boolean
   userId?: boolean
@@ -904,7 +946,7 @@ export type TeacherSelectScalar = {
   updatedAt?: boolean
 }
 
-export type TeacherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bio" | "salary" | "certifications" | "hireDate" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["teacher"]>
+export type TeacherOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bio" | "salary" | "contactNo" | "certifications" | "hireDate" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["teacher"]>
 export type TeacherInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   courses?: boolean | Prisma.Teacher$coursesArgs<ExtArgs>
@@ -931,6 +973,7 @@ export type $TeacherPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     bio: string | null
     salary: number | null
+    contactNo: string | null
     certifications: string | null
     hireDate: Date
     userId: string
@@ -1366,6 +1409,7 @@ export interface TeacherFieldRefs {
   readonly id: Prisma.FieldRef<"Teacher", 'String'>
   readonly bio: Prisma.FieldRef<"Teacher", 'String'>
   readonly salary: Prisma.FieldRef<"Teacher", 'Int'>
+  readonly contactNo: Prisma.FieldRef<"Teacher", 'String'>
   readonly certifications: Prisma.FieldRef<"Teacher", 'String'>
   readonly hireDate: Prisma.FieldRef<"Teacher", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Teacher", 'String'>

@@ -1,4 +1,5 @@
-import { prisma } from "../../lib/prisma";
+import { Student } from '../../../generated/prisma/client';
+import { prisma } from '../../lib/prisma';
 
 const getAllStudents = async () => {
   const students = await prisma.student.findMany({
@@ -7,24 +8,35 @@ const getAllStudents = async () => {
         select: {
           name: true,
           email: true,
-        }
-      }
+        },
+      },
     },
     orderBy: {
-      createdAt: 'desc'
-    }
+      createdAt: 'desc',
+    },
   });
 
   // Flatten the object so it's perfectly clean for the frontend table
-  return students.map(student => ({
+  return students.map((student) => ({
     id: student.id,
     userId: student.userId,
-    name: student.user?.name || "Unknown",
-    email: student.user?.email || "Unknown",
+    name: student.user?.name || 'Unknown',
+    email: student.user?.email || 'Unknown',
     // Include these if they exist in your Prisma schema, otherwise they will just safely return undefined
-    contactNo: (student as any).contactNo || "N/A", 
-    guardianName: (student as any).guardianName || "N/A"
+    contactNo: student.contactNo || 'N/A',
+    bloodGroup: student.bloodGroup || 'N/A',
   }));
 };
 
-export const StudentServices = { getAllStudents };
+const updateStudent = async (
+  id: string,
+  payload: Partial<{ contactNo?: string; bloodGroup?: string }>
+): Promise<Student> => {
+  const result = await prisma.student.update({
+    where: { id },
+    data: payload,
+  });
+  return result;
+};
+
+export const StudentServices = { getAllStudents, updateStudent };

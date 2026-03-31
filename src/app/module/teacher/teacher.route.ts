@@ -14,4 +14,10 @@ router.get(
   TeacherController.getAllTeachers
 );
 
+router.patch(
+  '/:id',
+  checkAuth(['ADMIN']), // Only Admins can edit teacher profiles
+  TeacherController.updateTeacher
+);
+
 export const TeacherRoutes = router;

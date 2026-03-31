@@ -2,16 +2,61 @@ import { Course } from '../../../generated/prisma/client';
 import AppError from '../../errorHelpers/AppError';
 import { prisma } from '../../lib/prisma';
 
+// 👉 BACKEND: course.service.ts (or wherever createCourse lives)
+
 const createCourse = async (payload: {
   title: string;
   description?: string;
   courseFee: number;
   maxCapacity?: number;
-  teacherApplicantId?: string;
-}): Promise<Course> => {
-  const result = await prisma.course.create({
-    data: payload,
+  teacherApplicantId: string; // The ID sent from your frontend dropdown
+}) => {
+  // 🕵️ STEP 1: Find the original job application to get their email
+  const application = await prisma.teacherApplication.findUnique({
+    where: { id: payload.teacherApplicantId },
   });
+
+  if (!application) {
+    throw new AppError(404, 'Teacher application not found.');
+  }
+
+  // 🕵️ STEP 2: Find the User account that was created when they were hired
+  const user = await prisma.user.findUnique({
+    where: { email: application.email },
+  });
+
+  if (!user) {
+    throw new AppError(
+      404,
+      'User account for this teacher not found. Did the hiring process finish?'
+    );
+  }
+
+  // 🕵️ STEP 3: Find their official Teacher Profile connected to that User account
+  const teacherProfile = await prisma.teacher.findUnique({
+    where: { userId: user.id },
+  });
+
+  if (!teacherProfile) {
+    throw new AppError(404, 'Teacher profile not found.');
+  }
+
+  // 🚀 STEP 4: Create the Course using the REAL Teacher ID!
+  const result = await prisma.course.create({
+    data: {
+      title: payload.title,
+      description: payload.description,
+      courseFee: payload.courseFee,
+      maxCapacity: payload.maxCapacity,
+
+      // We save the applicant ID just so the Admin table can easily show their name
+      teacherApplicantId: payload.teacherApplicantId,
+
+      // 👉 THIS IS THE MAGIC KEY: We link the course to their actual Teacher Profile!
+      teacherId: teacherProfile.id,
+    },
+  });
+
   return result;
 };
 

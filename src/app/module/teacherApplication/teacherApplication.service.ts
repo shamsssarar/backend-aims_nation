@@ -14,7 +14,16 @@ const submitApplication = async (payload: any) => {
   }
 
   const result = await prisma.teacherApplication.create({
-    data: payload,
+    data: {
+      name: payload.name,
+      email: payload.email,
+      phone: payload.phone,
+      specialty: payload.specialty,
+      experience: payload.experience,
+      status: 'PENDING',
+      resumeLink: payload.resumeLink,
+      message: payload.message, // Defaults to pending so the Admin can review it!
+    },
   });
   return result;
 };

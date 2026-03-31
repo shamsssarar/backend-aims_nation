@@ -3,7 +3,8 @@ model TeacherApplication {
   name        String
   email       String            @unique // Prevents the same person from spamming applications
   phone       String
-  specialty   String            // e.g., "Robotics", "Art", "Cooking"
+  specialty   String
+  experience  String?            // e.g., "Robotics", "Art", "Cooking"
   resumeLink  String            // A URL to their Google Drive or portfolio
   status      ApplicationStatus @default(PENDING)
 
