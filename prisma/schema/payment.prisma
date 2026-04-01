@@ -3,7 +3,7 @@ model Invoice {
   amount        Int           // Copied from the Course fee at the time of purchase
   status        PaymentStatus @default(PENDING)
   paymentDate   DateTime?     // When the admin officially marks it as paid
-  transactionId String?       
+  transactionId String        @unique       
   paymentMethod String?
   // Relations
   studentId     String

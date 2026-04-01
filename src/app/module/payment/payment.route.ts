@@ -3,6 +3,7 @@ import { PaymentControllers } from './payment.controller';
 import checkAuth from '../../middleware/checkAuth';
 import { validateRequest } from '../../middleware/validateRequest';
 import { PaymentValidations } from './payment.validation';
+import { auth } from '../../lib/auth';
 
 
 const router = express.Router();
@@ -35,5 +36,11 @@ router.patch(
   checkAuth(['ADMIN']),
   PaymentControllers.confirmPayment
 );
+
+router.post('/init', checkAuth(['STUDENT']), PaymentControllers.initPayment);
+
+router.post('/success/:tranId', PaymentControllers.paymentSuccess);
+router.post('/fail/:tranId', PaymentControllers.paymentFail);
+router.post('/cancel/:tranId', PaymentControllers.paymentCancel);
 
 export const PaymentRoutes = router;

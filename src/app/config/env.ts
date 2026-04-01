@@ -27,15 +27,20 @@ interface EnvConfig {
   // GOOGLE_CLIENT_SECRET: string;
   // GOOGLE_CALLBACK_URL: string;
   // FRONTEND_URL: string;
-  // CLOUDINARY:{
-  //     CLOUDINARY_CLOUD_NAME: string;
-  //     CLOUDINARY_API_KEY: string;
-  //     CLOUDINARY_API_SECRET: string;
-  // },
+  CLOUDINARY:{
+      CLOUDINARY_CLOUD_NAME: string;
+      CLOUDINARY_API_KEY: string;
+      CLOUDINARY_API_SECRET: string;
+  },
+sslCommerz: {
+  SSLCOMMERZ_STORE_ID: string;
+  SSLCOMMERZ_STORE_PASS: string;
+  SSLCOMMERZ_IS_LIVE: boolean;
+},
   // STRIPE:{
   //     STRIPE_SECRET_KEY: string;
   //     STRIPE_WEBHOOK_SECRET: string;
-  // },
+  // }
   // SUPER_ADMIN_EMAIL: string;
   // SUPER_ADMIN_PASSWORD: string;
 }
@@ -62,9 +67,12 @@ const loadEnvVariables = (): EnvConfig => {
     // 'GOOGLE_CLIENT_SECRET',
     // 'GOOGLE_CALLBACK_URL',
     // 'FRONTEND_URL',
-    // 'CLOUDINARY_CLOUD_NAME',
-    // 'CLOUDINARY_API_KEY',
-    // 'CLOUDINARY_API_SECRET',
+    'CLOUDINARY_CLOUD_NAME',
+    'CLOUDINARY_API_KEY',
+    'CLOUDINARY_API_SECRET',
+    'SSLCOMMERZ_STORE_ID',
+    'SSLCOMMERZ_STORE_PASS',
+    'SSLCOMMERZ_IS_LIVE',
     // 'STRIPE_SECRET_KEY',
     // 'STRIPE_WEBHOOK_SECRET',
     // 'SUPER_ADMIN_EMAIL',
@@ -104,11 +112,16 @@ const loadEnvVariables = (): EnvConfig => {
     // GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET as string,
     // GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
     // FRONTEND_URL: process.env.FRONTEND_URL as string,
-    // CLOUDINARY: {
-    //     CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
-    //     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
-    //     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
-    // },
+    CLOUDINARY: {
+        CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
+        CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
+        CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
+    },
+sslCommerz: {
+  SSLCOMMERZ_STORE_ID: process.env.SSLCOMMERZ_STORE_ID as string,
+  SSLCOMMERZ_STORE_PASS: process.env.SSLCOMMERZ_STORE_PASS as string,
+  SSLCOMMERZ_IS_LIVE: process.env.SSLCOMMERZ_IS_LIVE === "true",
+},
     // STRIPE: {
     //     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
     //     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET as string,

@@ -42,9 +42,10 @@ const createEnrollment = async (payload: { studentId: string; courseId: string }
       // B. If they didn't have an invoice, auto-generate a PAID one for the financial ledger
       await tx.invoice.create({
         data: {
+          transactionId: uuidv4(),
           studentId,
           courseId,
-          amount: course.courseFee, // You could also accept an optional override amount in the payload for scholarships!
+          amount: course.courseFee,
           status: 'PAID',
           paymentDate: new Date(),
         },
@@ -159,3 +160,6 @@ export const EnrollmentServices = {
   //   updateEnrollment,
   //   deleteEnrollment,
 };
+function uuidv4(): any {
+  throw new Error('Function not implemented.');
+}

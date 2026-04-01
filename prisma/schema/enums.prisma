@@ -15,6 +15,7 @@ enum PaymentStatus {
   PAID
   OVERDUE
   CANCELLED
+  FAILED
 }
 
 enum BehaviorStatus {

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { catchAsync } from '../../shared/catchAsync';
 import { sendResponse } from '../../shared/sendRespose';
 import { PaymentServices } from './payment.service';
+import { prisma } from '../../lib/prisma';
 
 const createPayment = catchAsync(async (req: Request, res: Response) => {
   const studentId = req.user?.id as string;
@@ -57,9 +58,99 @@ const getAllPayments = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const initPayment = catchAsync(async (req: Request, res: Response) => {
+  // Assuming your auth middleware attaches the user to req.user
+  // If you pass it via the body from the frontend, use req.body.studentId instead
+  const authUserId = req.user.id;
+  const { courseId } = req.body;
+
+  const result = await PaymentServices.initPayment(authUserId, courseId);
+
+  res.status(200).json({
+    success: true,
+    message: 'Payment initialized successfully',
+    data: result, // This contains the GatewayPageURL
+  });
+});
+
+const paymentSuccess = catchAsync(async (req: Request, res: Response) => {
+  const { tranId } = req.params as { tranId: string };
+
+  // 1. Update the Invoice status to PAID in the database
+  await prisma.$transaction(async (tx) => {
+    // 1. Update the Invoice and return the updated record
+    const updatedInvoice = await tx.invoice.update({
+      where: { transactionId: tranId },
+      data: {
+        status: 'PAID',
+        paymentDate: new Date(),
+      },
+    });
+
+    // 2. Safety Check: Ensure they aren't already enrolled (prevents duplicates if SSLCommerz fires twice)
+    const existingEnrollment = await tx.enrollment.findFirst({
+      where: {
+        studentId: updatedInvoice.studentId,
+        courseId: updatedInvoice.courseId,
+      },
+    });
+
+    // 3. Create the active enrollment
+    if (!existingEnrollment) {
+      await tx.enrollment.create({
+        data: {
+          studentId: updatedInvoice.studentId,
+          courseId: updatedInvoice.courseId,
+          status: 'ACTIVE',
+        },
+      });
+    }
+  });
+
+  // 2. Redirect user to your frontend success page
+  res.redirect(`http://localhost:3000/payments/success?transactionId=${tranId}`);
+});
+
+const paymentFail = catchAsync(async (req: Request, res: Response) => {
+  const { tranId } = req.params as { tranId: string };
+
+  // 1. Update the Invoice status to FAILED in the database
+  await prisma.invoice.update({
+    where: {
+      transactionId: tranId,
+    },
+    data: {
+      status: 'FAILED', // Match your enum
+    },
+  });
+
+  // 2. Redirect user to your frontend fail page
+  res.redirect(`http://localhost:3000/payments/fail?transactionId=${tranId}`);
+});
+
+const paymentCancel = catchAsync(async (req: Request, res: Response) => {
+  const { tranId } = req.params as { tranId: string };
+
+  await prisma.invoice.update({
+    where: {
+      transactionId: tranId,
+    },
+    data: {
+      status: 'CANCELLED', // Match your enum
+    },
+  });
+
+  // Redirect user back to home or cart
+  res.redirect(`http://localhost:3000/payments/cancel`);
+});
+
 export const PaymentControllers = {
   createPayment,
   confirmPayment,
   getMyPayments,
   getAllPayments,
+  initPayment,
+  paymentSuccess,
+  paymentFail,
+  paymentCancel,
 };

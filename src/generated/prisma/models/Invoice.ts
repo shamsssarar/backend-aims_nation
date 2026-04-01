@@ -220,7 +220,7 @@ export type InvoiceGroupByOutputType = {
   amount: number
   status: $Enums.PaymentStatus
   paymentDate: Date | null
-  transactionId: string | null
+  transactionId: string
   paymentMethod: string | null
   studentId: string
   courseId: string
@@ -257,7 +257,7 @@ export type InvoiceWhereInput = {
   amount?: Prisma.IntFilter<"Invoice"> | number
   status?: Prisma.EnumPaymentStatusFilter<"Invoice"> | $Enums.PaymentStatus
   paymentDate?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
-  transactionId?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  transactionId?: Prisma.StringFilter<"Invoice"> | string
   paymentMethod?: Prisma.StringNullableFilter<"Invoice"> | string | null
   studentId?: Prisma.StringFilter<"Invoice"> | string
   courseId?: Prisma.StringFilter<"Invoice"> | string
@@ -273,7 +273,7 @@ export type InvoiceOrderByWithRelationInput = {
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  transactionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  transactionId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -286,13 +286,13 @@ export type InvoiceOrderByWithRelationInput = {
 
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  transactionId?: string
   AND?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   OR?: Prisma.InvoiceWhereInput[]
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   amount?: Prisma.IntFilter<"Invoice"> | number
   status?: Prisma.EnumPaymentStatusFilter<"Invoice"> | $Enums.PaymentStatus
   paymentDate?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
-  transactionId?: Prisma.StringNullableFilter<"Invoice"> | string | null
   paymentMethod?: Prisma.StringNullableFilter<"Invoice"> | string | null
   studentId?: Prisma.StringFilter<"Invoice"> | string
   courseId?: Prisma.StringFilter<"Invoice"> | string
@@ -301,14 +301,14 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
-}, "id">
+}, "id" | "transactionId">
 
 export type InvoiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   paymentDate?: Prisma.SortOrderInput | Prisma.SortOrder
-  transactionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  transactionId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -330,7 +330,7 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   amount?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   status?: Prisma.EnumPaymentStatusWithAggregatesFilter<"Invoice"> | $Enums.PaymentStatus
   paymentDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
-  transactionId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
+  transactionId?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
   paymentMethod?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
   studentId?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
   courseId?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
@@ -344,7 +344,7 @@ export type InvoiceCreateInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -358,7 +358,7 @@ export type InvoiceUncheckedCreateInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   studentId: string
   courseId: string
@@ -372,7 +372,7 @@ export type InvoiceUpdateInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -386,7 +386,7 @@ export type InvoiceUncheckedUpdateInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -400,7 +400,7 @@ export type InvoiceCreateManyInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   studentId: string
   courseId: string
@@ -414,7 +414,7 @@ export type InvoiceUpdateManyMutationInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,7 +426,7 @@ export type InvoiceUncheckedUpdateManyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -588,7 +588,7 @@ export type InvoiceCreateWithoutCourseInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -601,7 +601,7 @@ export type InvoiceUncheckedCreateWithoutCourseInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   studentId: string
   createdAt?: Date | string
@@ -643,7 +643,7 @@ export type InvoiceScalarWhereInput = {
   amount?: Prisma.IntFilter<"Invoice"> | number
   status?: Prisma.EnumPaymentStatusFilter<"Invoice"> | $Enums.PaymentStatus
   paymentDate?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
-  transactionId?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  transactionId?: Prisma.StringFilter<"Invoice"> | string
   paymentMethod?: Prisma.StringNullableFilter<"Invoice"> | string | null
   studentId?: Prisma.StringFilter<"Invoice"> | string
   courseId?: Prisma.StringFilter<"Invoice"> | string
@@ -657,7 +657,7 @@ export type InvoiceCreateWithoutStudentInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -670,7 +670,7 @@ export type InvoiceUncheckedCreateWithoutStudentInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   courseId: string
   createdAt?: Date | string
@@ -709,7 +709,7 @@ export type InvoiceCreateManyCourseInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   studentId: string
   createdAt?: Date | string
@@ -722,7 +722,7 @@ export type InvoiceUpdateWithoutCourseInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -735,7 +735,7 @@ export type InvoiceUncheckedUpdateWithoutCourseInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -748,7 +748,7 @@ export type InvoiceUncheckedUpdateManyWithoutCourseInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -761,7 +761,7 @@ export type InvoiceCreateManyStudentInput = {
   amount: number
   status?: $Enums.PaymentStatus
   paymentDate?: Date | string | null
-  transactionId?: string | null
+  transactionId: string
   paymentMethod?: string | null
   courseId: string
   createdAt?: Date | string
@@ -774,7 +774,7 @@ export type InvoiceUpdateWithoutStudentInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -787,7 +787,7 @@ export type InvoiceUncheckedUpdateWithoutStudentInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -800,7 +800,7 @@ export type InvoiceUncheckedUpdateManyWithoutStudentInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -897,7 +897,7 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     amount: number
     status: $Enums.PaymentStatus
     paymentDate: Date | null
-    transactionId: string | null
+    transactionId: string
     paymentMethod: string | null
     studentId: string
     courseId: string
