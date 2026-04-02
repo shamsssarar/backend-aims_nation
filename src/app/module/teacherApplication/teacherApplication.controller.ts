@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { TeacherApplicationServices } from './teacherApplication.service';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
+import { TeacherApplicationServices } from './teacherApplication.service.js';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
 
 const submitApplication = catchAsync(async (req: Request, res: Response) => {
   const result = await TeacherApplicationServices.submitApplication(req.body);

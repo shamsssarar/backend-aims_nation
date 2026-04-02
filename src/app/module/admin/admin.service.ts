@@ -1,5 +1,5 @@
 // backend/src/app/module/admin/admin.service.ts
-import { prisma } from '../../lib/prisma'; // Adjust path to your prisma client
+import { prisma } from '../../lib/prisma.js'; // Adjust path to your prisma client
 
 const getDashboardAnalytics = async () => {
   // 1. Total Active Students (Counting unique students who have active enrollments)

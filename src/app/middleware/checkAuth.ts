@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { auth } from '../lib/auth';
-import AppError from '../errorHelpers/AppError';
-import { catchAsync } from '../shared/catchAsync';
-
+import { auth } from '../lib/auth.js';
+import AppError from '../errorHelpers/AppError.js';
+import { catchAsync } from '../shared/catchAsync.js';
 
 // We pass the allowed roles as an array (e.g., authGuard(['ADMIN', 'TEACHER']))
 const checkAuth = (requiredRoles: string[]) => {

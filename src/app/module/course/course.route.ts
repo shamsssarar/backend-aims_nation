@@ -1,9 +1,9 @@
 import express from 'express';
-import { CourseControllers } from './course.controller';
+import { CourseControllers } from './course.controller.js';
 
-import { CourseValidations } from './course.validation';
-import { validateRequest } from '../../middleware/validateRequest';
-import checkAuth from '../../middleware/checkAuth';
+import { CourseValidations } from './course.validation.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
+import checkAuth from '../../middleware/checkAuth.js';
 
 const router = express.Router();
 

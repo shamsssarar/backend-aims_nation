@@ -1,9 +1,8 @@
 // src/app/module/teacher/teacher.service.ts
-import AppError from '../../errorHelpers/AppError';
-import { prisma } from '../../lib/prisma'; // Adjust path to your prisma instance
+import AppError from '../../errorHelpers/AppError.js';
+import { prisma } from '../../lib/prisma.js'; // Adjust path to your prisma instance
 
 const getMyClasses = async (userId: string) => {
-  console.log('🔍 SEARCHING FOR TEACHER WITH USER ID:', userId);
   // 1. Find the Teacher profile using the authenticated User's ID
   const teacherProfile = await prisma.teacher.findUnique({
     where: { userId },
@@ -22,8 +21,6 @@ const getMyClasses = async (userId: string) => {
       },
     },
   });
-  console.log('🔍 FOUND TEACHER PROFILE:', teacherProfile?.id);
-  console.log('🔍 FOUND COURSES:', teacherProfile?.courses?.length);
 
   if (!teacherProfile) {
     throw new AppError(404, 'Teacher profile not found. Please complete your profile setup first.');

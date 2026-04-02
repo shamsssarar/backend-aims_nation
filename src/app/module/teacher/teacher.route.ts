@@ -1,7 +1,7 @@
 // src/app/module/teacher/teacher.route.ts
 import express from 'express';
-import { TeacherController } from './teacher.controller';
-import checkAuth from '../../middleware/checkAuth'; // Adjust path to your checkAuth
+import { TeacherController } from './teacher.controller.js';
+import checkAuth from '../../middleware/checkAuth.js'; // Adjust path to your checkAuth
 
 const router = express.Router();
 

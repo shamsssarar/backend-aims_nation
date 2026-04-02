@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { EnrollmentServices } from './enrollment.service';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
-import AppError from '../../errorHelpers/AppError';
+import { EnrollmentServices } from './enrollment.service.js';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
+import AppError from '../../errorHelpers/AppError.js';
 
 const createEnrollment = catchAsync(async (req: Request, res: Response) => {
   const result = await EnrollmentServices.createEnrollment(req.body);

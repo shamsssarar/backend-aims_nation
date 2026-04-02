@@ -1,5 +1,5 @@
-import AppError from '../../errorHelpers/AppError';
-import { prisma } from '../../lib/prisma';
+import AppError from '../../errorHelpers/AppError.js';
+import { prisma } from '../../lib/prisma.js';
 
 // 1. Teacher uploads a material
 

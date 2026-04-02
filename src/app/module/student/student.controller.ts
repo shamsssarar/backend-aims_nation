@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { catchAsync } from '../../shared/catchAsync';
-import { StudentServices } from './student.service';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { StudentServices } from './student.service.js';
 
 const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   const result = await StudentServices.getAllStudents();

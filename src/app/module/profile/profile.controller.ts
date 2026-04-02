@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { ProfileServices } from './profile.service';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
+import { ProfileServices } from './profile.service.js';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
 
 const createStudentProfile = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user?.id as string;

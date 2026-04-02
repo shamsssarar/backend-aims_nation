@@ -1,10 +1,10 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import { notFound } from './app/middleware/notFound';
-import globalErrorHandler from './app/middleware/globalErrorHandler';
-import { IndexRoutes } from './app/routes';
+import { notFound } from './app/middleware/notFound.js';
+import globalErrorHandler from './app/middleware/globalErrorHandler.js';
+import { IndexRoutes } from './app/routes/index.js';
 import { toNodeHandler } from 'better-auth/node';
-import { auth } from './app/lib/auth';
+import { auth } from './app/lib/auth.js';
 
 const app: Application = express();
 
@@ -23,6 +23,10 @@ app.use('/api/v1', IndexRoutes);
 
 //auth
 app.use('/api/auth', toNodeHandler(auth));
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('AiMS Nation Backend is Live!');
+});
 
 // 404 handler (must be placed after all routes)
 app.use(notFound);

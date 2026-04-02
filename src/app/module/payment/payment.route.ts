@@ -1,10 +1,9 @@
 import express from 'express';
-import { PaymentControllers } from './payment.controller';
-import checkAuth from '../../middleware/checkAuth';
-import { validateRequest } from '../../middleware/validateRequest';
-import { PaymentValidations } from './payment.validation';
-import { auth } from '../../lib/auth';
-
+import { PaymentControllers } from './payment.controller.js';
+import checkAuth from '../../middleware/checkAuth.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
+import { PaymentValidations } from './payment.validation.js';
+import { auth } from '../../lib/auth.js';
 
 const router = express.Router();
 
@@ -17,25 +16,13 @@ router.post(
 );
 
 // 2. STUDENT views their own billing history
-router.get(
-  '/my-payments',
-  checkAuth(['STUDENT']),
-  PaymentControllers.getMyPayments
-);
+router.get('/my-payments', checkAuth(['STUDENT']), PaymentControllers.getMyPayments);
 
 // 3. ADMIN views all pending/paid payments
-router.get(
-  '/',
-  checkAuth(['ADMIN']),
-  PaymentControllers.getAllPayments
-);
+router.get('/', checkAuth(['ADMIN']), PaymentControllers.getAllPayments);
 
 // 4. ADMIN approves payment (The Magic Button)
-router.patch(
-  '/:id/confirm',
-  checkAuth(['ADMIN']),
-  PaymentControllers.confirmPayment
-);
+router.patch('/:id/confirm', checkAuth(['ADMIN']), PaymentControllers.confirmPayment);
 
 router.post('/init', checkAuth(['STUDENT']), PaymentControllers.initPayment);
 

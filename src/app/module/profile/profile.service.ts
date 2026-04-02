@@ -1,5 +1,5 @@
-import AppError from '../../errorHelpers/AppError';
-import { prisma } from '../../lib/prisma';
+import AppError from '../../errorHelpers/AppError.js';
+import { prisma } from '../../lib/prisma.js';
 
 const createStudentProfile = async (userId: string, payload: any) => {
   // 1. Verify the User exists and is actually a STUDENT

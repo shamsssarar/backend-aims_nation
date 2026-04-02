@@ -1,8 +1,8 @@
 import express from 'express';
-import { StudentControllers } from './student.controller';
-import checkAuth from '../../middleware/checkAuth';
-import { updateStudentValidationSchema } from './student.validation';
-import { validateRequest } from '../../middleware/validateRequest';
+import { StudentControllers } from './student.controller.js';
+import checkAuth from '../../middleware/checkAuth.js';
+import { updateStudentValidationSchema } from './student.validation.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
 
 const router = express.Router();
 

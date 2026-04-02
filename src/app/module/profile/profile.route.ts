@@ -1,9 +1,9 @@
 import express from 'express';
-import { ProfileControllers } from './profile.controller';
+import { ProfileControllers } from './profile.controller.js';
 
-import { ProfileValidations } from './profile.validation';
-import checkAuth from '../../middleware/checkAuth';
-import { validateRequest } from '../../middleware/validateRequest';
+import { ProfileValidations } from './profile.validation.js';
+import checkAuth from '../../middleware/checkAuth.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
 
 const router = express.Router();
 

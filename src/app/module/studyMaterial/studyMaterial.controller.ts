@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import { StudyMaterialServices } from './studyMaterial.service';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
-import AppError from '../../errorHelpers/AppError';
-import { uploadFileToCloudinary } from '../../utils/cloudinary';
+import { StudyMaterialServices } from './studyMaterial.service.js';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
+import AppError from '../../errorHelpers/AppError.js';
+import { uploadFileToCloudinary } from '../../utils/cloudinary.js';
 
 const getMaterialsForCourse = catchAsync(async (req: Request, res: Response) => {
   const authUserId = req.user?.id as string;

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
-import { userServices } from './user.service';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
+import { userServices } from './user.service.js';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const result = await userServices.createUser(req.body);

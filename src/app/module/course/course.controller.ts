@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { CourseServices } from './course.service';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
+import { CourseServices } from './course.service.js';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
 
 const createCourse = catchAsync(async (req: Request, res: Response) => {
   const result = await CourseServices.createCourse(req.body);

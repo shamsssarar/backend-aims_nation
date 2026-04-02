@@ -1,8 +1,8 @@
 // src/app/module/teacher/teacher.controller.ts
 import { Request, Response } from 'express';
-import { catchAsync } from '../../shared/catchAsync'; // Adjust path if needed
-import { TeacherServices } from './teacher.service';
-import AppError from '../../errorHelpers/AppError';
+import { catchAsync } from '../../shared/catchAsync.js'; // Adjust path if needed
+import { TeacherServices } from './teacher.service.js';
+import AppError from '../../errorHelpers/AppError.js';
 
 const getMyClasses = catchAsync(async (req: Request, res: Response) => {
   // Grab the User ID from your checkAuth middleware

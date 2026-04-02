@@ -1,8 +1,8 @@
 import express from 'express';
-import { EnrollmentControllers } from './enrollment.controller';
-import { EnrollmentValidations } from './enrollment.validation';
-import { validateRequest } from '../../middleware/validateRequest';
-import checkAuth from '../../middleware/checkAuth';
+import { EnrollmentControllers } from './enrollment.controller.js';
+import { EnrollmentValidations } from './enrollment.validation.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
+import checkAuth from '../../middleware/checkAuth.js';
 
 const router = express.Router();
 

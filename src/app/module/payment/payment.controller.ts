@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
-import { PaymentServices } from './payment.service';
-import { prisma } from '../../lib/prisma';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
+import { PaymentServices } from './payment.service.js';
+import { prisma } from '../../lib/prisma.js';
 
 const createPayment = catchAsync(async (req: Request, res: Response) => {
   const studentId = req.user?.id as string;

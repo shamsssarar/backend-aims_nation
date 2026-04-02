@@ -1,7 +1,7 @@
 // src/app/utils/cloudinary.ts
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
-import AppError from '../errorHelpers/AppError';
-import { envVars } from '../config/env';
+import AppError from '../errorHelpers/AppError.js';
+import { envVars } from '../config/env.js';
 
 cloudinary.config({
   cloud_name: envVars.CLOUDINARY.CLOUDINARY_CLOUD_NAME,
@@ -51,7 +51,6 @@ export const uploadFileToCloudinary = async (
     // 3. Execute the stream
     const uploadStream = cloudinary.uploader.upload_stream(uploadOptions, (error, result) => {
       if (error) {
-        console.error('Cloudinary Stream Error:', error);
         return reject(new AppError(500, 'Failed to upload file to Cloudinary'));
       }
       resolve(result as UploadApiResponse);

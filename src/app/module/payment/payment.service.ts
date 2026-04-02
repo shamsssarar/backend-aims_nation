@@ -1,6 +1,6 @@
-import { envVars } from '../../config/env';
-import AppError from '../../errorHelpers/AppError';
-import { prisma } from '../../lib/prisma';
+import { envVars } from '../../config/env.js';
+import AppError from '../../errorHelpers/AppError.js';
+import { prisma } from '../../lib/prisma.js';
 import SSLCommerzPayment from 'sslcommerz-lts';
 
 // 1. Student requests to join a course
@@ -138,7 +138,6 @@ const initPayment = async (authUserId: string, courseId: string) => {
       status: 'PENDING',
     },
   });
-  
 
   // 4. Construct SSLCommerz Payload
   const data = {

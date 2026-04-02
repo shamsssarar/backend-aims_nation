@@ -1,6 +1,6 @@
-import { EnrollmentModel } from '../../../generated/prisma/models/Enrollment';
-import AppError from '../../errorHelpers/AppError';
-import { prisma } from '../../lib/prisma';
+import { EnrollmentModel } from '../../../generated/prisma/models/Enrollment.js';
+import AppError from '../../errorHelpers/AppError.js';
+import { prisma } from '../../lib/prisma.js';
 
 const createEnrollment = async (payload: { studentId: string; courseId: string }) => {
   const { studentId, courseId } = payload;

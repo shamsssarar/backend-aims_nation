@@ -1,9 +1,9 @@
 import express from 'express';
-import { WeeklyReportControllers } from './weeklyReport.controller';
+import { WeeklyReportControllers } from './weeklyReport.controller.js';
 
-import { WeeklyReportValidations } from './weeklyReport.validation';
-import checkAuth from '../../middleware/checkAuth';
-import { validateRequest } from '../../middleware/validateRequest';
+import { WeeklyReportValidations } from './weeklyReport.validation.js';
+import checkAuth from '../../middleware/checkAuth.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
 
 const router = express.Router();
 

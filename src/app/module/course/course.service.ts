@@ -1,6 +1,6 @@
-import { Course } from '../../../generated/prisma/client';
-import AppError from '../../errorHelpers/AppError';
-import { prisma } from '../../lib/prisma';
+import { Course } from '../../../generated/prisma/client.js';
+import AppError from '../../errorHelpers/AppError.js';
+import { prisma } from '../../lib/prisma.js';
 
 // 👉 BACKEND: course.service.ts (or wherever createCourse lives)
 

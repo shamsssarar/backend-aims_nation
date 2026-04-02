@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { WeeklyReportServices } from './weeklyReport.service';
-import { catchAsync } from '../../shared/catchAsync';
-import { sendResponse } from '../../shared/sendRespose';
+import { WeeklyReportServices } from './weeklyReport.service.js';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { sendResponse } from '../../shared/sendRespose.js';
 
 const createWeeklyReport = catchAsync(async (req: Request, res: Response) => {
   const authUserId = req.user?.id as string; // Base Auth ID

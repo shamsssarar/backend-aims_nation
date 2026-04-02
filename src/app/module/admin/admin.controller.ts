@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { catchAsync } from '../../shared/catchAsync';
-import { AdminServices } from './admin.service';
+import { catchAsync } from '../../shared/catchAsync.js';
+import { AdminServices } from './admin.service.js';
 
 const getAnalytics = catchAsync(async (req: Request, res: Response) => {
   const result = await AdminServices.getDashboardAnalytics();

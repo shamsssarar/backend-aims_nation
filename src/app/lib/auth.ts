@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { prisma } from './prisma'; // Your prisma client instance
+import { prisma } from './prisma.js'; // Your prisma client instance
 import bcrypt from 'bcryptjs';
 
 export const auth = betterAuth({
@@ -29,7 +29,7 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: ['http://localhost:3000'],
+  trustedOrigins: ['process.env.FRONTEND_URL'], // Allow CORS for our frontend
 
   // You can configure session limits, JWTs, etc., here later
 });

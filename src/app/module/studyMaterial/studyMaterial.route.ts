@@ -1,10 +1,10 @@
 import express from 'express';
-import { StudyMaterialControllers } from './studyMaterial.controller';
-import { validateRequest } from '../../middleware/validateRequest';
-import { StudyMaterialValidations } from './studyMaterial.validation';
+import { StudyMaterialControllers } from './studyMaterial.controller.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
+import { StudyMaterialValidations } from './studyMaterial.validation.js';
 
-import checkAuth from '../../middleware/checkAuth';
-import { upload } from '../../utils/upload';
+import checkAuth from '../../middleware/checkAuth.js';
+import { upload } from '../../utils/upload.js';
 
 const router = express.Router();
 

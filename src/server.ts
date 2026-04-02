@@ -1,8 +1,8 @@
-import app from './app';
-import { envVars } from './app/config/env';
+import app from './app.js';
+import { envVars } from './app/config/env.js';
 
 const port = envVars.PORT;
 
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });

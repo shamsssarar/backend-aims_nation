@@ -1,9 +1,9 @@
 import express from 'express';
-import { TeacherApplicationControllers } from './teacherApplication.controller';
+import { TeacherApplicationControllers } from './teacherApplication.controller.js';
 
-import { TeacherApplicationValidations } from './teacherApplication.validation';
-import { validateRequest } from '../../middleware/validateRequest';
-import checkAuth from '../../middleware/checkAuth';
+import { TeacherApplicationValidations } from './teacherApplication.validation.js';
+import { validateRequest } from '../../middleware/validateRequest.js';
+import checkAuth from '../../middleware/checkAuth.js';
 
 const router = express.Router();
 
