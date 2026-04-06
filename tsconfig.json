@@ -1,15 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es2023",
-    "module": "esnext",
+    "target": "ES2023",
+    "module": "ESNext",
     "moduleResolution": "bundler",
-
+    "lib": ["esnext"],
+    "types": ["node"],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "prisma.config.ts"]

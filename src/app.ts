@@ -12,10 +12,11 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Adjust this to your frontend URL
-    credentials: true, // Allow cookies to be sent
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
   })
 );
+
 app.use(express.urlencoded({ extended: true }));
 
 //routes

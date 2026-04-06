@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ProfileServices } from './profile.service.js';
 import { catchAsync } from '../../shared/catchAsync.js';
 import { sendResponse } from '../../shared/sendRespose.js';
+import AppError from '../../errorHelpers/AppError.js';
 
 const createStudentProfile = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user?.id as string;
@@ -30,7 +31,29 @@ const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateProfileImage = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.id as string;
+
+  // The file comes from multer (e.g., upload.single('profileImage'))
+  const file = req.file;
+
+  if (!file) {
+    throw new AppError(400, 'Please provide an image to upload.');
+  }
+
+  // Pass it to your service layer
+  const result = await ProfileServices.updateProfileImage(userId, file);
+
+  sendResponse(res, {
+    httpStatusCode: 200,
+    success: true,
+    message: 'Profile image updated successfully',
+    data: result, // Return the updated user/image URL
+  });
+});
+
 export const ProfileControllers = {
   createStudentProfile,
   getMyProfile,
+  updateProfileImage,
 };

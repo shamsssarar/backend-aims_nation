@@ -1,6 +1,7 @@
-import { EnrollmentModel } from '../../../generated/prisma/models/Enrollment.js';
 import AppError from '../../errorHelpers/AppError.js';
+// import { Prisma } from '@prisma/client';
 import { prisma } from '../../lib/prisma.js';
+import { randomUUID } from 'crypto';
 
 const createEnrollment = async (payload: { studentId: string; courseId: string }) => {
   const { studentId, courseId } = payload;
@@ -26,6 +27,7 @@ const createEnrollment = async (payload: { studentId: string; courseId: string }
   }
 
   // 3. Execute the Database Transaction
+  // @ts-ignore
   const result = await prisma.$transaction(async (tx) => {
     // A. Check if the student already tried to buy it and has a PENDING invoice
     const existingInvoice = await tx.invoice.findFirst({
@@ -42,7 +44,7 @@ const createEnrollment = async (payload: { studentId: string; courseId: string }
       // B. If they didn't have an invoice, auto-generate a PAID one for the financial ledger
       await tx.invoice.create({
         data: {
-          transactionId: uuidv4(),
+          transactionId: randomUUID(),
           studentId,
           courseId,
           amount: course.courseFee,
@@ -160,6 +162,3 @@ export const EnrollmentServices = {
   //   updateEnrollment,
   //   deleteEnrollment,
 };
-function uuidv4(): any {
-  throw new Error('Function not implemented.');
-}

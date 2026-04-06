@@ -1,4 +1,3 @@
-import { Student } from '../../../generated/prisma/client.js';
 import { prisma } from '../../lib/prisma.js';
 
 const getAllStudents = async () => {
@@ -31,7 +30,7 @@ const getAllStudents = async () => {
 const updateStudent = async (
   id: string,
   payload: Partial<{ contactNo?: string; bloodGroup?: string }>
-): Promise<Student> => {
+): Promise<any> => {
   const result = await prisma.student.update({
     where: { id },
     data: payload,

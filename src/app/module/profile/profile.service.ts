@@ -1,5 +1,7 @@
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import AppError from '../../errorHelpers/AppError.js';
 import { prisma } from '../../lib/prisma.js';
+import { uploadFileToCloudinary } from '../../utils/cloudinary.js';
 
 const createStudentProfile = async (userId: string, payload: any) => {
   // 1. Verify the User exists and is actually a STUDENT
@@ -50,6 +52,13 @@ const getMyProfile = async (userId: string, role: string) => {
             role: true,
           },
         },
+        enrollments: {
+          where: { status: 'ACTIVE' },
+          include: {
+            course: { select: { title: true, description: true } }, // Assuming you have a progress relation
+          },
+          take: 5, // Only load the 5 most recent to keep the payload light
+        },
       },
     });
   } else if (role === 'TEACHER') {
@@ -66,6 +75,18 @@ const getMyProfile = async (userId: string, role: string) => {
             role: true,
           },
         },
+        // ✅ RIGHT: Put _count inside the select!
+        courses: {
+          select: {
+            title: true,
+            description: true,
+            _count: {
+              select: {
+                enrollments: true,
+              },
+            },
+          },
+        }, // Assuming you have a progress relation
       },
     });
   } else if (role === 'ADMIN') {
@@ -74,7 +95,30 @@ const getMyProfile = async (userId: string, role: string) => {
   throw new AppError(400, 'Invalid user role');
 };
 
+const updateProfileImage = async (userId: string, file: any) => {
+  // 1. Upload to Cloudinary
+  // Note: Depending on your exact Cloudinary setup, you might upload
+  // a buffer, a temp file path, or use a stream.
+  const uploadedImage = await uploadFileToCloudinary(file.buffer, file.originalname);
+
+  // 2. Update the user in Prisma
+  const updatedUser = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      image: uploadedImage.secure_url,
+    },
+    select: {
+      id: true,
+      name: true,
+      image: true,
+    },
+  });
+
+  return updatedUser;
+};
+
 export const ProfileServices = {
   createStudentProfile,
   getMyProfile,
+  updateProfileImage,
 };

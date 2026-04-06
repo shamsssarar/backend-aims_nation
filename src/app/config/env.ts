@@ -8,7 +8,7 @@ interface EnvConfig {
   NODE_ENV: string;
   PORT: string;
   DATABASE_URL: string;
-  // BETTER_AUTH_SECRET: string;
+  BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
   // ACCESS_TOKEN_SECRET: string;
   // REFRESH_TOKEN_SECRET: string;
@@ -27,16 +27,16 @@ interface EnvConfig {
   // GOOGLE_CLIENT_SECRET: string;
   // GOOGLE_CALLBACK_URL: string;
   // FRONTEND_URL: string;
-  CLOUDINARY:{
-      CLOUDINARY_CLOUD_NAME: string;
-      CLOUDINARY_API_KEY: string;
-      CLOUDINARY_API_SECRET: string;
-  },
-sslCommerz: {
-  SSLCOMMERZ_STORE_ID: string;
-  SSLCOMMERZ_STORE_PASS: string;
-  SSLCOMMERZ_IS_LIVE: boolean;
-},
+  CLOUDINARY: {
+    CLOUDINARY_CLOUD_NAME: string;
+    CLOUDINARY_API_KEY: string;
+    CLOUDINARY_API_SECRET: string;
+  };
+  sslCommerz: {
+    SSLCOMMERZ_STORE_ID: string;
+    SSLCOMMERZ_STORE_PASS: string;
+    SSLCOMMERZ_IS_LIVE: boolean;
+  };
   // STRIPE:{
   //     STRIPE_SECRET_KEY: string;
   //     STRIPE_WEBHOOK_SECRET: string;
@@ -48,35 +48,7 @@ sslCommerz: {
 const loadEnvVariables = (): EnvConfig => {
   const requireEnvVariable = [
     'NODE_ENV',
-    'PORT',
-    'DATABASE_URL',
-    // 'BETTER_AUTH_SECRET',
-    'BETTER_AUTH_URL',
-    // 'ACCESS_TOKEN_SECRET',
-    // 'REFRESH_TOKEN_SECRET',
-    // 'ACCESS_TOKEN_EXPIRES_IN',
-    // 'REFRESH_TOKEN_EXPIRES_IN',
-    // 'BETTER_AUTH_SESSION_TOKEN_EXPIRES_IN',
-    // 'BETTER_AUTH_SESSION_TOKEN_UPDATE_AGE',
-    // 'EMAIL_SENDER_SMTP_USER',
-    // 'EMAIL_SENDER_SMTP_PASS',
-    // 'EMAIL_SENDER_SMTP_HOST',
-    // 'EMAIL_SENDER_SMTP_PORT',
-    // 'EMAIL_SENDER_SMTP_FROM',
-    // 'GOOGLE_CLIENT_ID',
-    // 'GOOGLE_CLIENT_SECRET',
-    // 'GOOGLE_CALLBACK_URL',
-    // 'FRONTEND_URL',
-    'CLOUDINARY_CLOUD_NAME',
-    'CLOUDINARY_API_KEY',
-    'CLOUDINARY_API_SECRET',
-    'SSLCOMMERZ_STORE_ID',
-    'SSLCOMMERZ_STORE_PASS',
-    'SSLCOMMERZ_IS_LIVE',
-    // 'STRIPE_SECRET_KEY',
-    // 'STRIPE_WEBHOOK_SECRET',
-    // 'SUPER_ADMIN_EMAIL',
-    // 'SUPER_ADMIN_PASSWORD',
+    // not forcing PORT/DATABASE_URL/BETTER_AUTH_URL so deployment works with minimal env
   ];
 
   requireEnvVariable.forEach((variable) => {
@@ -91,10 +63,10 @@ const loadEnvVariables = (): EnvConfig => {
 
   return {
     NODE_ENV: process.env.NODE_ENV as string,
-    PORT: process.env.PORT as string,
-    DATABASE_URL: process.env.DATABASE_URL as string,
-    // BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
-    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
+    PORT: process.env.PORT || '3000',
+    DATABASE_URL: process.env.DATABASE_URL || '',
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL || '',
     // ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET as string,
     // REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET as string,
     // ACCESS_TOKEN_EXPIRES_IN: process.env.ACCESS_TOKEN_EXPIRES_IN as string,
@@ -113,15 +85,15 @@ const loadEnvVariables = (): EnvConfig => {
     // GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL as string,
     // FRONTEND_URL: process.env.FRONTEND_URL as string,
     CLOUDINARY: {
-        CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
-        CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
-        CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
+      CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
+      CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
+      CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
     },
-sslCommerz: {
-  SSLCOMMERZ_STORE_ID: process.env.SSLCOMMERZ_STORE_ID as string,
-  SSLCOMMERZ_STORE_PASS: process.env.SSLCOMMERZ_STORE_PASS as string,
-  SSLCOMMERZ_IS_LIVE: process.env.SSLCOMMERZ_IS_LIVE === "true",
-},
+    sslCommerz: {
+      SSLCOMMERZ_STORE_ID: process.env.SSLCOMMERZ_STORE_ID as string,
+      SSLCOMMERZ_STORE_PASS: process.env.SSLCOMMERZ_STORE_PASS as string,
+      SSLCOMMERZ_IS_LIVE: process.env.SSLCOMMERZ_IS_LIVE === 'true',
+    },
     // STRIPE: {
     //     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
     //     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET as string,

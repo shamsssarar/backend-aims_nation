@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Prisma } from '@prisma/client';
 import { catchAsync } from '../../shared/catchAsync.js';
 import { sendResponse } from '../../shared/sendRespose.js';
 import { PaymentServices } from './payment.service.js';
@@ -77,7 +78,7 @@ const paymentSuccess = catchAsync(async (req: Request, res: Response) => {
   const { tranId } = req.params as { tranId: string };
 
   // 1. Update the Invoice status to PAID in the database
-  await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     // 1. Update the Invoice and return the updated record
     const updatedInvoice = await tx.invoice.update({
       where: { transactionId: tranId },

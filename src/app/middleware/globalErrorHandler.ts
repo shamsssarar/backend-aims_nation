@@ -3,7 +3,7 @@ import { ZodError } from 'zod';
 import { TErrorSources } from '../interfaces/error.interface.js';
 import { handleZodError } from '../errorHelpers/handleZodError.js';
 import AppError from '../errorHelpers/AppError.js';
-// import config from '../config'; // Assuming you have an env config file
+// import config from '../config.js'; // Assuming you have an env config file
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   // Default values

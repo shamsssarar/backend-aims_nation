@@ -45,9 +45,9 @@ const createCourse = async (payload: {
   const result = await prisma.course.create({
     data: {
       title: payload.title,
-      description: payload.description,
+      description: payload.description ?? null, // Handle optional description
       courseFee: payload.courseFee,
-      maxCapacity: payload.maxCapacity,
+      maxCapacity: payload.maxCapacity ?? 20,
 
       // We save the applicant ID just so the Admin table can easily show their name
       teacherApplicantId: payload.teacherApplicantId,
@@ -138,7 +138,7 @@ const getCourseRoster = async (teacherUserId: string, courseId: string) => {
   });
 
   // 3. Transform the data into a perfectly flat array for the Frontend
-  const formattedRoster = enrollments.map((enrollment) => {
+  const formattedRoster = enrollments.map((enrollment: (typeof enrollments)[0]) => {
     const latestReport = enrollment.student.weeklyReports[0];
 
     // Logic to determine if a report is "Pending"

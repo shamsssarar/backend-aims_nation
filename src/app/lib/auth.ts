@@ -7,6 +7,7 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
+  baseURL: process.env.BETTER_AUTH_URL as string, // Your backend URL
   user: {
     additionalFields: {
       role: {
@@ -29,7 +30,13 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: ['process.env.FRONTEND_URL'], // Allow CORS for our frontend
+  trustedOrigins: [(process.env.FRONTEND_URL as string) || (process.env.BETTER_AUTH_URL as string)], // Allow CORS for our frontend
 
+  advanced: {
+    defaultCookieAttributes: {
+      sameSite: 'none',
+      secure: true,
+    },
+  },
   // You can configure session limits, JWTs, etc., here later
 });

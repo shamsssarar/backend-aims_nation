@@ -85,7 +85,7 @@ const uploadMaterial = async (
   const result = await prisma.studyMaterial.create({
     data: {
       title: payload.title,
-      description: payload.description,
+      description: payload.description ?? null,
       fileUrl: payload.fileUrl,
       courseId: course.id,
       teacherId: teacher.id,

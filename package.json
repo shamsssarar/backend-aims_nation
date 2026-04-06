@@ -1,5 +1,5 @@
 {
-  "name": "ph_healthcare-backend",
+  "name": "aims_nation_backend",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
@@ -8,17 +8,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "build": "prisma generate && tsc && node scripts/fix-esm-imports.js",
-    "vercel-build": "prisma generate && tsc && node scripts/fix-esm-imports.js",
-    "dev": "tsx --watch src/server.ts",
+    "build": "prisma generate && tsc",
+    "vercel-build": "prisma generate && tsc",
+    "dev": "tsx watch src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "lint": "eslint ./src/**/*",
+    "lint:fix": "eslint ./src/**/* --fix",
+    "format": "prettier --write ./src/**/*"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.3.0",
-    "@prisma/client": "^7.3.0",
+    "@prisma/client": "^5.22.0",
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.5.5",
     "cloudinary": "^1.41.3",
@@ -29,6 +28,7 @@
     "multer": "^2.1.1",
     "multer-storage-cloudinary": "^4.0.0",
     "pg": "^8.18.0",
+    "serverless-http": "^4.0.0",
     "sslcommerz-lts": "^1.2.0",
     "zod": "^4.3.6"
   },
@@ -44,7 +44,7 @@
     "eslint-config-prettier": "^9.1.2",
     "globals": "^15.15.0",
     "prettier": "^3.8.1",
-    "prisma": "^7.3.0",
+    "prisma": "^5.22.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.55.0"
