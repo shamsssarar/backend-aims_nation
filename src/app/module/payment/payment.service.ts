@@ -125,6 +125,19 @@ const initPayment = async (authUserId: string, courseId: string) => {
   const course = await prisma.course.findUnique({ where: { id: courseId } });
   if (!course) throw new AppError(404, 'Course not found');
 
+  const existingEnrollment = await prisma.enrollment.findFirst({
+    where: {
+      studentId: student.id,
+      courseId: courseId,
+      status: 'ACTIVE', // Or whatever your active status is in Supabase
+    },
+  });
+
+  if (existingEnrollment) {
+    // Stop the function completely and return an error to the frontend
+    throw new Error('Student is already enrolled in this course.');
+  }
+
   // 2. Generate a Unique Transaction ID
   const tran_id = `AIMS_${new Date().getTime()}_${Math.floor(Math.random() * 1000)}`;
 
