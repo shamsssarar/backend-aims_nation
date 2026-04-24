@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { CourseServices } from './course.service.js';
 import { catchAsync } from '../../shared/catchAsync.js';
 import { sendResponse } from '../../shared/sendRespose.js';
+import { IQueryParams } from '../../interfaces/query.interface.js';
 
 const createCourse = catchAsync(async (req: Request, res: Response) => {
   const result = await CourseServices.createCourse(req.body);
@@ -16,13 +17,14 @@ const createCourse = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllCourses = catchAsync(async (req: Request, res: Response) => {
-  const result = await CourseServices.getAllCourses();
+  const result = await CourseServices.getAllCourses(req.query as IQueryParams);
 
   sendResponse(res, {
     httpStatusCode: 200,
     success: true,
     message: 'Courses retrieved successfully',
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 

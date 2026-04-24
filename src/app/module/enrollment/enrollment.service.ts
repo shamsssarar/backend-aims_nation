@@ -1,7 +1,10 @@
+import { Enrollment } from '@prisma/client';
 import AppError from '../../errorHelpers/AppError.js';
 // import { Prisma } from '@prisma/client';
 import { prisma } from '../../lib/prisma.js';
 import { randomUUID } from 'crypto';
+import { IQueryParams, IQueryResult } from '../../interfaces/query.interface.js';
+import { QueryBuilder } from '../../utils/queryBuilder.js';
 
 const createEnrollment = async (payload: { studentId: string; courseId: string }) => {
   const { studentId, courseId } = payload;
@@ -73,17 +76,28 @@ const createEnrollment = async (payload: { studentId: string; courseId: string }
   return result;
 };
 
-const getAllEnrollments = async (studentId: string) => {
-  const result = await prisma.enrollment.findMany({
-    where: { studentId },
-    include: {
+const getAllEnrollments = async (query: IQueryParams): Promise<IQueryResult<Enrollment>> => {
+  // 1. Initialize Builder
+  const enrollmentQuery = new QueryBuilder<Enrollment>(prisma.enrollment, query, {
+    // Search by course title or the student's actual user name!
+    searchableFields: ['course.title', 'student.user.name', 'student.user.email'],
+    // This allows the frontend to dynamically pass ?studentId=XYZ or ?status=ACTIVE
+    filterableFields: ['studentId', 'courseId', 'status'],
+  });
+
+  // 2. Chain and Execute
+  const result = await enrollmentQuery
+    .search()
+    .filter()
+    .sort() // To match your old default, you can pass ?sortBy=enrollmentDate in the URL
+    .paginate()
+    .include({
+      // Keeping your exact include structure!
       student: true,
       course: true,
-    },
-    orderBy: {
-      enrollmentDate: 'desc',
-    },
-  });
+    })
+    .execute();
+
   return result;
 };
 

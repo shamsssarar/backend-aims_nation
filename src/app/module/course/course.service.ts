@@ -1,6 +1,8 @@
 import { Course } from '../../../generated/prisma/client.js';
 import AppError from '../../errorHelpers/AppError.js';
+import { IQueryParams, IQueryResult } from '../../interfaces/query.interface.js';
 import { prisma } from '../../lib/prisma.js';
+import { QueryBuilder } from '../../utils/queryBuilder.js';
 
 // 👉 BACKEND: course.service.ts (or wherever createCourse lives)
 
@@ -60,14 +62,26 @@ const createCourse = async (payload: {
   return result;
 };
 
-const getAllCourses = async (): Promise<Course[]> => {
-  const result = await prisma.course.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-    include: { teacherApplicant: { select: { name: true, email: true } } },
+const getAllCourses = async (query: IQueryParams): Promise<IQueryResult<Course>> => {
+  // 👉 2. Initialize the QueryBuilder
+  const courseQuery = new QueryBuilder<Course>(prisma.course, query, {
+    // What fields should the main search bar look at?
+    searchableFields: ['title', 'description'],
+
+    // What exact fields are users allowed to filter by?
+    filterableFields: ['status', 'courseFee', 'maxCapacity'],
   });
-  return result;
+
+  // 👉 3. Chain the methods and execute
+  const result = await courseQuery
+    .search()
+    .filter()
+    .sort()
+    .paginate()
+    .include({ teacherApplicant: { select: { name: true, email: true } } })
+    .execute();
+
+  return result; // This now returns { data: [...], meta: { page, limit, total } }
 };
 
 const getCourseById = async (id: string): Promise<Course | null> => {

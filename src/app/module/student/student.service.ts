@@ -1,30 +1,48 @@
+import { Student } from '@prisma/client';
 import { prisma } from '../../lib/prisma.js';
+import { QueryBuilder } from '../../utils/queryBuilder.js';
+import { IQueryParams } from '../../interfaces/query.interface.js';
 
-const getAllStudents = async () => {
-  const students = await prisma.student.findMany({
-    include: {
+const getAllStudents = async (query: IQueryParams) => {
+  // 1. Initialize Builder
+  const studentQuery = new QueryBuilder<Student>(prisma.student, query, {
+    searchableFields: ['user.name', 'user.email', 'contactNo', 'address'],
+    filterableFields: ['gender', 'bloodGroup', 'isDeleted'],
+  });
+
+  // 2. Chain and Execute the query
+  const result = await studentQuery
+    .search()
+    .filter()
+    .sort()
+    .paginate()
+    .include({
       user: {
         select: {
           name: true,
           email: true,
         },
       },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
+    })
+    .execute();
 
-  // Flatten the object so it's perfectly clean for the frontend table
-  return students.map((student) => ({
+  // 👉 3. Flatten the result.data exactly as you requested!
+  const flattenedData = result.data.map((student: any) => ({
     id: student.id,
     userId: student.userId,
     name: student.user?.name || 'Unknown',
     email: student.user?.email || 'Unknown',
-    // Include these if they exist in your Prisma schema, otherwise they will just safely return undefined
     contactNo: student.contactNo || 'N/A',
     bloodGroup: student.bloodGroup || 'N/A',
+    // You can spread the rest of the student properties if you want them all:
+    // ...student
   }));
+
+  // 👉 4. Return the new flattened data while safely keeping the pagination meta
+  return {
+    meta: result.meta,
+    data: flattenedData,
+  };
 };
 
 const updateStudent = async (
