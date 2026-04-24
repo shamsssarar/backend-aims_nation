@@ -38,5 +38,28 @@ export const auth = betterAuth({
       secure: true,
     },
   },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
+
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          // 'user' is the newly created User record from better-auth
+          // We immediately generate their Student profile!
+          await prisma.student.create({
+            data: {
+              userId: user.id,
+              // Add any default Student fields here if your schema requires them
+            },
+          });
+        },
+      },
+    },
+  },
   // You can configure session limits, JWTs, etc., here later
 });
