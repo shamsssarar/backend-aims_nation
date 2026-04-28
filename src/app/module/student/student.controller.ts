@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { catchAsync } from '../../shared/catchAsync.js';
 import { StudentServices } from './student.service.js';
+import { IQueryParams } from '../../interfaces/query.interface.js';
 
 const getAllStudents = catchAsync(async (req: Request, res: Response) => {
-  const result = await StudentServices.getAllStudents();
+  const result = await StudentServices.getAllStudents(req.query as IQueryParams);
 
   res.status(200).json({
     success: true,

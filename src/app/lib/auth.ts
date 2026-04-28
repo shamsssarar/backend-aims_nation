@@ -1,4 +1,4 @@
-import { betterAuth } from 'better-auth';
+import { betterAuth, boolean } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { prisma } from './prisma.js'; // Your prisma client instance
 import bcrypt from 'bcryptjs';
@@ -30,7 +30,11 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: [(process.env.FRONTEND_URL as string) || (process.env.BETTER_AUTH_URL as string)], // Allow CORS for our frontend
+  trustedOrigins: [
+    process.env.FRONTEND_URL as string,
+    process.env.BETTER_AUTH_URL as string,
+    'https://aims-nation-frontend.vercel.app',
+  ].filter(Boolean), // Allow CORS for our frontend
 
   advanced: {
     defaultCookieAttributes: {

@@ -10,6 +10,7 @@ import { WeeklyReportRoutes } from '../module/weeklyReport/weeklyReport.route.js
 import { TeacherRoutes } from '../module/teacher/teacher.route.js';
 import { AdminRoutes } from '../module/admin/admin.route.js';
 import { StudentRoutes } from '../module/student/student.route.js';
+import { AiRoutes } from '../module/ai/ai.route.js';
 
 const router = Router();
 
@@ -34,5 +35,7 @@ router.use('/teachers', TeacherRoutes);
 router.use('/admin', AdminRoutes);
 
 router.use('/students', StudentRoutes);
+
+router.use('/ai', AiRoutes)
 
 export const IndexRoutes = router;

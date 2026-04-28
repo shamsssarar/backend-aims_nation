@@ -3,6 +3,7 @@ import { EnrollmentServices } from './enrollment.service.js';
 import { catchAsync } from '../../shared/catchAsync.js';
 import { sendResponse } from '../../shared/sendRespose.js';
 import AppError from '../../errorHelpers/AppError.js';
+import { IQueryParams } from '../../interfaces/query.interface.js';
 
 const createEnrollment = catchAsync(async (req: Request, res: Response) => {
   const result = await EnrollmentServices.createEnrollment(req.body);
@@ -16,8 +17,14 @@ const createEnrollment = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllEnrollments = catchAsync(async (req: Request, res: Response) => {
-  const studentId = req.user?.id as string;
-  const result = await EnrollmentServices.getAllEnrollments(studentId);
+  const query = { ...req.query };
+
+  // 👉 2. Inject the logged-in student's ID into the query object.
+  // The QueryBuilder's .filter() method will automatically catch this!
+  if (req.user?.id) {
+    query.studentId = req.user.id;
+  }
+  const result = await EnrollmentServices.getAllEnrollments(query as IQueryParams);
 
   sendResponse(res, {
     httpStatusCode: 200,
