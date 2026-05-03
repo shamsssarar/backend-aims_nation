@@ -4,6 +4,7 @@ import { CourseServices } from './course.service.js';
 import { catchAsync } from '../../shared/catchAsync.js';
 import { sendResponse } from '../../shared/sendRespose.js';
 import { IQueryParams } from '../../interfaces/query.interface.js';
+import { getSimilarCourses } from './recommendation.service.js';
 
 const createCourse = catchAsync(async (req: Request, res: Response) => {
   const result = await CourseServices.createCourse(req.body);
@@ -83,6 +84,26 @@ const deleteCourse = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getRecommendations = async (req: Request, res: Response) => {
+  try {
+    const { courseId } = req.params;
+
+    if (!courseId) {
+      return res.status(400).json({ success: false, message: 'Course ID is required' });
+    }
+
+    const recommendedCourses = await getSimilarCourses(courseId as string);
+
+    res.status(200).json({
+      success: true,
+      data: recommendedCourses,
+    });
+  } catch (error) {
+    console.error('Recommendation Engine Error:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+};
+
 export const CourseControllers = {
   createCourse,
   getAllCourses,
@@ -90,4 +111,5 @@ export const CourseControllers = {
   updateCourse,
   deleteCourse,
   getCourseRoster,
+  getRecommendations,
 };

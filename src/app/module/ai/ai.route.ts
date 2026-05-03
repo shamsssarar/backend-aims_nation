@@ -1,10 +1,10 @@
 // src/module/ai/ai.route.ts
 import express from 'express';
-import { askTutor } from './ai.controller';
+import { askTutor } from './ai.controller.js';
 
 const router = express.Router();
 
 // The endpoint the frontend will hit
-router.post('/tutor', askTutor);
+router.post('/ask', askTutor);
 
 export const AiRoutes = router;

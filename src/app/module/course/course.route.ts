@@ -24,6 +24,9 @@ router.get('/', CourseControllers.getAllCourses);
 
 router.get('/:id', CourseControllers.getCourseById);
 
+// GET /api/courses/:courseId/recommendations
+router.get('/:courseId/recommendations', CourseControllers.getRecommendations);
+
 router.patch(
   '/:id',
   checkAuth(['ADMIN']),
