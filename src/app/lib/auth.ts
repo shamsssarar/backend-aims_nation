@@ -34,6 +34,7 @@ export const auth = betterAuth({
     process.env.FRONTEND_URL as string,
     process.env.BETTER_AUTH_URL as string,
     'https://aims-nation-frontend.vercel.app',
+    'http://localhost:3000'
   ].filter(Boolean), // Allow CORS for our frontend
 
   advanced: {

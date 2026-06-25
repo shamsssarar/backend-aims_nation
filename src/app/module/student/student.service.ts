@@ -47,12 +47,33 @@ const getAllStudents = async (query: IQueryParams) => {
 
 const updateStudent = async (
   id: string,
-  payload: Partial<{ contactNo?: string; bloodGroup?: string }>
+  payload: Partial<{
+    contactNo?: string;
+    bloodGroup?: string;
+    schoolGrade?: string;
+    dateOfBirth?: string;
+  }>
 ): Promise<any> => {
+  // 1. Smart Lookup: Check if 'id' matches the Student PK *OR* the User FK
+  const student = await prisma.student.findFirst({
+    where: {
+      OR: [{ id: id }, { userId: id }],
+    },
+  });
+
+  // 2. Safety Check
+  if (!student) {
+    throw new Error('Record to update not found. No student matches this ID.');
+  }
+
+  // 3. Now perform the update using the true Student Primary Key
   const result = await prisma.student.update({
-    where: { id },
+    where: {
+      id: student.id,
+    },
     data: payload,
   });
+
   return result;
 };
 

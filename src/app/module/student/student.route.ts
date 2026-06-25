@@ -11,7 +11,7 @@ router.get('/', checkAuth(['ADMIN']), StudentControllers.getAllStudents);
 
 router.patch(
   '/:id',
-  checkAuth(['ADMIN']),
+  checkAuth(['ADMIN', 'STUDENT']),
   validateRequest(updateStudentValidationSchema),
   StudentControllers.updateStudent
 );
