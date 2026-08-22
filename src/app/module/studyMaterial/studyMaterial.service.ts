@@ -1,5 +1,6 @@
 import AppError from '../../errorHelpers/AppError.js';
 import { prisma } from '../../lib/prisma.js';
+import { deleteFileFromCloudinary } from '../../utils/cloudinary.js';
 
 // 1. Teacher uploads a material
 
@@ -47,17 +48,53 @@ const getMaterialsForCourseTeacher = async (courseId: string) => {
   });
 };
 
-// 4. Delete material
-const deleteStudyMaterial = async (id: string) => {
-  return await prisma.studyMaterial.delete({
+// 4. Delete material — enforce ownership: only uploader teacher or ADMIN can delete
+const deleteStudyMaterial = async (id: string, authUser: any) => {
+  // 1. Find the existing material
+  const material = await prisma.studyMaterial.findUnique({
     where: { id },
+    select: { id: true, teacherId: true, courseId: true, cloudinaryPublicId: true },
   });
+
+  if (!material) {
+    throw new AppError(404, 'Study material not found.');
+  }
+
+  // 2. ADMIN can delete any material
+  const role = (authUser as any)?.role?.toUpperCase?.() || 'STUDENT';
+  if (role === 'ADMIN') {
+    // proceed
+  } else {
+    // 3. Ensure the requester is a Teacher and is the original uploader
+    const teacher = await prisma.teacher.findUnique({ where: { userId: authUser.id } });
+    if (!teacher) {
+      throw new AppError(403, 'Only the uploading teacher or an admin can delete this material.');
+    }
+
+    if (teacher.id !== material.teacherId) {
+      throw new AppError(403, 'You do not have permission to delete this material.');
+    }
+  }
+
+  // 4. Delete cloudinary asset if present (best-effort)
+  if (material.cloudinaryPublicId) {
+    try {
+      await deleteFileFromCloudinary(material.cloudinaryPublicId);
+    } catch (err) {
+      // Log and continue — DB record should still be deleted to avoid orphaned references in app
+      console.warn('Failed to delete Cloudinary asset for material', material.id, err);
+    }
+  }
+
+  // 5. Delete DB record
+  const deleted = await prisma.studyMaterial.delete({ where: { id } });
+  return deleted;
 };
 
 const uploadMaterial = async (
   userId: string,
   courseId: string,
-  payload: { title: string; description?: string; fileUrl: string }
+  payload: { title: string; description?: string; fileUrl: string; cloudinaryPublicId?: string }
 ) => {
   // 1. Find the exact Teacher Profile linked to this User ID
   const teacher = await prisma.teacher.findUnique({
@@ -87,6 +124,7 @@ const uploadMaterial = async (
       title: payload.title,
       description: payload.description ?? null,
       fileUrl: payload.fileUrl,
+      cloudinaryPublicId: payload.cloudinaryPublicId ?? null,
       courseId: course.id,
       teacherId: teacher.id,
     },

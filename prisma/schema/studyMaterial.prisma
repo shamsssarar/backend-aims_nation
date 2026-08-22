@@ -1,16 +1,17 @@
 model StudyMaterial {
-  id          String   @id @default(uuid())
-  title       String
-  description String?  @db.Text
-  fileUrl     String   // Link to AWS S3, Google Drive, or wherever you host the PDF/File
+  id                 String   @id @default(uuid())
+  title              String
+  description        String?  @db.Text
+  fileUrl            String   // Link to Cloudinary, S3, Google Drive, or wherever you host the PDF/File
+  cloudinaryPublicId String?  // Cloudinary public_id for asset deletion (nullable to allow other storage)
   
   // Relations
-  courseId    String
-  course      Course   @relation(fields: [courseId], references: [id])
+  courseId           String
+  course             Course   @relation(fields: [courseId], references: [id])
   
-  teacherId   String
-  teacher     Teacher  @relation(fields: [teacherId], references: [id])
+  teacherId          String
+  teacher            Teacher  @relation(fields: [teacherId], references: [id])
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }

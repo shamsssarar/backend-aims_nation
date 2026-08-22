@@ -92,6 +92,47 @@ const getCourseById = async (id: string): Promise<Course | null> => {
   return result;
 };
 
+const getPublicSummary = async (courseId: string) => {
+  // Return only non-sensitive, public metadata suitable for unauthenticated consumption
+  const course = await prisma.course.findUnique({
+    where: { id: courseId },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      courseFee: true,
+      schedule: true,
+      maxCapacity: true,
+      teacher: {
+        select: {
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+      updatedAt: true,
+    },
+  });
+
+  if (!course) {
+    throw new AppError(404, 'Course not found');
+  }
+
+  // Shape it clearly for the frontend/AI public path
+  return {
+    id: course.id,
+    title: course.title,
+    shortDescription: course.description ?? null,
+    fee: course.courseFee,
+    schedule: course.schedule ?? null,
+    capacity: course.maxCapacity,
+    teacherName: course.teacher?.user?.name ?? null,
+    lastUpdated: course.updatedAt,
+  };
+};
+
 const updateCourse = async (
   id: string,
   payload: Partial<{ title: string; description?: string; courseFee: number }>
@@ -187,6 +228,7 @@ export const CourseServices = {
   createCourse,
   getAllCourses,
   getCourseById,
+  getPublicSummary,
   getCourseRoster,
   updateCourse,
   deleteCourse,

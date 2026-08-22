@@ -41,6 +41,18 @@ const getCourseById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getPublicCourseSummary = catchAsync(async (req: Request, res: Response) => {
+  const { courseId } = req.params;
+  const result = await CourseServices.getPublicSummary(courseId as string);
+
+  sendResponse(res, {
+    httpStatusCode: 200,
+    success: true,
+    message: 'Public course summary retrieved successfully',
+    data: result,
+  });
+});
+
 const getCourseRoster = catchAsync(async (req: Request, res: Response) => {
   // 1. Grab the Teacher's ID from the Auth Middleware
   // (Depending on your JWT payload, this might be req.user.id or req.user.userId)
@@ -108,6 +120,7 @@ export const CourseControllers = {
   createCourse,
   getAllCourses,
   getCourseById,
+  getPublicCourseSummary,
   updateCourse,
   deleteCourse,
   getCourseRoster,
