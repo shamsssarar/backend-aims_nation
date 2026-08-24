@@ -1,17 +1,24 @@
 import { Request, Response, NextFunction } from 'express';
-import { askTutorService } from './ai.service.js';
+import { askTutorService, askTutorPublicService } from './ai.service.js';
 
 export const askTutor = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { message, history } = req.body;
+    const { message, history, courseId } = req.body;
 
     if (!message) {
       res.status(400).json({ success: false, error: 'Message is required' });
       return; // Stop execution here
     }
 
-    // Call the service to do the heavy lifting
-    const responseText = await askTutorService(message, history);
+    // Ensure authentication has populated req.user via checkAuth
+    const authUser = (req as any).user;
+    if (!authUser || !authUser.id) {
+      res.status(401).json({ success: false, error: 'Authentication required' });
+      return;
+    }
+
+    // Call the service to do the heavy lifting with explicit course context and user
+    const responseText = await askTutorService(message, history, courseId ?? null, authUser);
 
     // Send the clean response back to the frontend EXACTLY ONCE
     res.status(200).json({
@@ -22,6 +29,26 @@ export const askTutor = async (req: Request, res: Response, next: NextFunction):
   } catch (error) {
     console.error('🚨 [AI ERROR]:', error);
     // Pass fatal errors to your Express global error handler
+    next(error);
+  }
+};
+
+export const askTutorPublic = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { message, courseId } = req.body;
+
+    if (!message) {
+      res.status(400).json({ success: false, error: 'Message is required' });
+      return;
+    }
+
+    // Call the public service which MUST NOT use the vector store — only course metadata
+    const responseText = await askTutorPublicService(message, courseId ?? null);
+
+    res.status(200).json({ success: true, data: responseText });
+    return;
+  } catch (error) {
+    console.error('🚨 [AI PUBLIC ERROR]:', error);
     next(error);
   }
 };

@@ -30,7 +30,8 @@ const getMaterialsForCourse = catchAsync(async (req: Request, res: Response) => 
 
 const deleteStudyMaterial = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await StudyMaterialServices.deleteStudyMaterial(id as string);
+  const authUser = (req as any).user;
+  const result = await StudyMaterialServices.deleteStudyMaterial(id as string, authUser);
 
   sendResponse(res, {
     httpStatusCode: 200,
@@ -61,6 +62,7 @@ const uploadMaterial = catchAsync(async (req: Request, res: Response) => {
     title,
     description,
     fileUrl: cloudinaryResult.secure_url,
+    cloudinaryPublicId: (cloudinaryResult as any).public_id,
   };
 
   const result = await StudyMaterialServices.uploadMaterial(userId, courseId, payload);

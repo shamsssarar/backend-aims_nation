@@ -33,8 +33,6 @@ export const uploadFileToCloudinary = async (
 
   // src/app/utils/cloudinary.ts
 
-  // src/app/utils/cloudinary.ts
-
   return new Promise((resolve, reject) => {
     // 1. Base options for ALL files
     const uploadOptions: any = {
@@ -58,5 +56,18 @@ export const uploadFileToCloudinary = async (
 
     // Write the buffer to the stream
     uploadStream.end(buffer);
+  });
+};
+
+export const deleteFileFromCloudinary = async (publicId?: string): Promise<any> => {
+  if (!publicId) return null;
+
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.destroy(publicId, (error, result) => {
+      if (error) {
+        return reject(new AppError(500, 'Failed to delete asset from Cloudinary'));
+      }
+      resolve(result);
+    });
   });
 };

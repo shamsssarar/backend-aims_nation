@@ -22,6 +22,9 @@ router.get(
 
 router.get('/', CourseControllers.getAllCourses);
 
+// Public summary endpoint for unauthenticated metadata access
+router.get('/:courseId/public-summary', CourseControllers.getPublicCourseSummary);
+
 router.get('/:id', CourseControllers.getCourseById);
 
 // GET /api/courses/:courseId/recommendations
