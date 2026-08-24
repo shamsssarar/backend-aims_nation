@@ -94,8 +94,8 @@ const getCourseById = async (id: string): Promise<Course | null> => {
 
 const getPublicSummary = async (courseId: string) => {
   // Return only non-sensitive, public metadata suitable for unauthenticated consumption
-  const course = await prisma.course.findUnique({
-    where: { id: courseId },
+  const course = await prisma.course.findFirst({
+    where: { id: courseId, deletedAt: null },
     select: {
       id: true,
       title: true,

@@ -42,13 +42,8 @@ export const askTutorPublic = async (req: Request, res: Response, next: NextFunc
       return;
     }
 
-    if (!courseId) {
-      res.status(400).json({ success: false, error: 'Course ID is required for public queries' });
-      return;
-    }
-
     // Call the public service which MUST NOT use the vector store — only course metadata
-    const responseText = await askTutorPublicService(message, courseId as string);
+    const responseText = await askTutorPublicService(message, courseId ?? null);
 
     res.status(200).json({ success: true, data: responseText });
     return;
